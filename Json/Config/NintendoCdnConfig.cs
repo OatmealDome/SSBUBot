@@ -1,6 +1,6 @@
 namespace SmashBcatDetector.Json.Config
 {
-    public class BcatConfig
+    public class NintendoCdnConfig
     {
         public string Certificate
         {

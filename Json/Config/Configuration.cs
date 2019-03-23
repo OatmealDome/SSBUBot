@@ -8,8 +8,8 @@ namespace SmashBcatDetector.Json.Config
         public static Configuration LoadedConfiguration;
         private static string ConfigurationFilePath;
 
-        [JsonProperty("Bcat")]
-        public BcatConfig BcatConfig
+        [JsonProperty("NintendoCdn")]
+        public NintendoCdnConfig CdnConfig
         {
             get;
             set;

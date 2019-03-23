@@ -182,7 +182,7 @@ namespace SmashUltimate.Bcat
             }
 
             // Format the URL with the environment
-            return Url.Replace("%", Configuration.LoadedConfiguration.BcatConfig.Environment);
+            return Url.Replace("%", Configuration.LoadedConfiguration.CdnConfig.Environment);
         }
         
         public string GetFormattedUrl(Language language)

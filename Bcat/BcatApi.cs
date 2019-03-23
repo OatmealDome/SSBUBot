@@ -42,7 +42,7 @@ namespace Bcat
             httpClient.DefaultRequestHeaders.Add("User-Agent", BCAT_USER_AGENT);
 
             // Add serial
-            httpClient.DefaultRequestHeaders.Add("X-Nintendo-Serial-Number", Configuration.LoadedConfiguration.BcatConfig.SerialNumber);
+            httpClient.DefaultRequestHeaders.Add("X-Nintendo-Serial-Number", Configuration.LoadedConfiguration.CdnConfig.SerialNumber);
 
             // Set initialized
             initialized = true;
@@ -174,7 +174,7 @@ namespace Bcat
             }
 
             // Add the environment to the URL
-            url = url.Replace("%", Configuration.LoadedConfiguration.BcatConfig.Environment);
+            url = url.Replace("%", Configuration.LoadedConfiguration.CdnConfig.Environment);
 
             // Declare a retry counter
             int retries = 3;
