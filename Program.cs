@@ -64,6 +64,7 @@ namespace SmashBcatDetector
 
                 // Set defaults
                 configuration.BcatConfig = new BcatConfig();
+                configuration.BcatConfig.Certificate = "/home/oatmealdome/switch.pfx";
                 configuration.BcatConfig.SerialNumber = "XAW1000000000";
                 configuration.BcatConfig.Environment = "lp1";
                 configuration.DiscordConfig = new DiscordConfig();
