@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bcat.News;
 using Bcat.News.Catalog;
 using MessagePack;
+using SmashBcatDetector.Json.Config;
 
 namespace Bcat
 {
@@ -28,10 +29,9 @@ namespace Bcat
         
         // Generated on initialization
         private static HttpClient httpClient;
-        private static string serverEnvironment;
         private static bool initialized = false;
 
-        public static void Initialize(string environment, string serialNumber)
+        public static void Initialize()
         {
             // Create custom HttpClient
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -42,10 +42,7 @@ namespace Bcat
             httpClient.DefaultRequestHeaders.Add("User-Agent", BCAT_USER_AGENT);
 
             // Add serial
-            httpClient.DefaultRequestHeaders.Add("X-Nintendo-Serial-Number", serialNumber);
-
-            // Set environment
-            serverEnvironment = environment;
+            httpClient.DefaultRequestHeaders.Add("X-Nintendo-Serial-Number", Configuration.LoadedConfiguration.BcatConfig.SerialNumber);
 
             // Set initialized
             initialized = true;
@@ -54,7 +51,6 @@ namespace Bcat
         public static void Dispose()
         {
             httpClient.Dispose();
-            serverEnvironment = null;
             initialized = false;
         }
 
@@ -178,7 +174,7 @@ namespace Bcat
             }
 
             // Add the environment to the URL
-            url = url.Replace("%", serverEnvironment);
+            url = url.Replace("%", Configuration.LoadedConfiguration.BcatConfig.Environment);
 
             // Declare a retry counter
             int retries = 3;

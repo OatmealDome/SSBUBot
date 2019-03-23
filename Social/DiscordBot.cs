@@ -50,7 +50,7 @@ namespace SmashBcatDetector.Social
             set;
         }
 
-        public static async Task Initialize(Json.Config.DiscordConfig config)
+        public static async Task Initialize()
         {
             // Check if we're already initialized
             if (DiscordClient != null)
@@ -90,7 +90,7 @@ namespace SmashBcatDetector.Social
             ActiveInteractiveMessages = new List<InteractiveMessage>();
 
             // Log in
-            await DiscordClient.LoginAsync(TokenType.Bot, config.Token);
+            await DiscordClient.LoginAsync(TokenType.Bot, Configuration.LoadedConfiguration.DiscordConfig.Token);
             await DiscordClient.StartAsync();
         }
 

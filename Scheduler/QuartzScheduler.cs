@@ -13,7 +13,7 @@ namespace SmashBcatDetector.Scheduler
     {
         private static IScheduler Scheduler;
 
-        public static async Task Initialize(SchedulerConfig SchedulerConfig)
+        public static async Task Initialize()
         {
             // Grab the Scheduler instance from the Factory
             StdSchedulerFactory factory = new StdSchedulerFactory();
@@ -23,8 +23,8 @@ namespace SmashBcatDetector.Scheduler
             await Scheduler.Start();
 
             // Schedule important jobs
-            await ScheduleJob<BcatCheckerJob>("Regular", SchedulerConfig.BcatJob);
-            await ScheduleJob<RecurringHousekeepingJob>("Regular", SchedulerConfig.HousekeepingJob);
+            await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.BcatJob);
+            await ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.HousekeepingJob);
         }
 
         public static async Task Dispose()

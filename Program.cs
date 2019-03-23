@@ -102,7 +102,7 @@ namespace SmashBcatDetector
             System.IO.Directory.CreateDirectory(Program.LOCAL_EXCEPTION_LOGS_DIRECTORY);
 
             // Load the Configuration
-            configuration = Configuration.Load(LOCAL_CONFIGURATION);
+            Configuration.Load(LOCAL_CONFIGURATION);
 
             // Initialize the ContainerCache
             ContainerCache.Initialize(LOCAL_CONTAINER_CACHE_DIRECTORY);
@@ -111,20 +111,19 @@ namespace SmashBcatDetector
             HandlerMapper.Initialize();
 
             // Initialize BCAT
-            BcatApi.Initialize(configuration.BcatConfig.Environment, configuration.BcatConfig.SerialNumber);
+            BcatApi.Initialize();
 
             // Initialize S3
-            S3Api.Initialize(configuration.S3Config.ServiceUrl, configuration.S3Config.BucketName,
-                configuration.S3Config.AccessKey, configuration.S3Config.AccessKeySecret);
+            S3Api.Initialize();
 
             // Initialize Twitter
-            TwitterHandler.Initialize(configuration.TwitterConfig);
+            TwitterHandler.Initialize();
 
             // Initialize the DiscordBot
-            await DiscordBot.Initialize(configuration.DiscordConfig);
+            await DiscordBot.Initialize();
 
             // Initialize the Scheduler
-            await QuartzScheduler.Initialize(configuration.SchedulerConfig);
+            await QuartzScheduler.Initialize();
 
             // Wait for the bot to fully initialize
             while (!DiscordBot.IsReady)

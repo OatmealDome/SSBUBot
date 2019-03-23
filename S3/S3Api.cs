@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using SmashBcatDetector.Json.Config;
 
 namespace SmashBcatDetector.S3
 {
@@ -13,22 +14,18 @@ namespace SmashBcatDetector.S3
         // Instances
         private static AmazonS3Client s3Client;
         private static TransferUtility transferUtility;
-        private static string bucketName;
         private static bool initialized = false;
 
-        public static void Initialize(string serviceUrl, string bucket, string accessKey, string accessKeySecret)
+        public static void Initialize()
         {
             // Create a new AmazonS3Client
-            s3Client = new AmazonS3Client(accessKey, accessKeySecret, new AmazonS3Config
+            s3Client = new AmazonS3Client(Configuration.LoadedConfiguration.S3Config.AccessKey, Configuration.LoadedConfiguration.S3Config.AccessKeySecret, new AmazonS3Config
             {
-                ServiceURL = serviceUrl
+                ServiceURL = Configuration.LoadedConfiguration.S3Config.ServiceUrl
             });
 
             // Create a TransferUtility instance
             transferUtility = new TransferUtility(s3Client);
-
-            // Set bucket name
-            bucketName = bucket;
 
             // Set initialized flag
             initialized = true;
@@ -38,7 +35,6 @@ namespace SmashBcatDetector.S3
         {
             transferUtility.Dispose();
             s3Client.Dispose();
-            bucketName = null;
             initialized = false;
         }
 
@@ -54,7 +50,7 @@ namespace SmashBcatDetector.S3
         {
             TransferUtilityUploadRequest request = new TransferUtilityUploadRequest()
             {
-                BucketName = bucketName + remoteDirectory,
+                BucketName = Configuration.LoadedConfiguration.S3Config.BucketName + remoteDirectory,
                 Key = remoteFile,
                 InputStream = inputStream,
                 CannedACL = S3CannedACL.PublicRead,
@@ -69,7 +65,7 @@ namespace SmashBcatDetector.S3
         {
             TransferUtilityUploadRequest request = new TransferUtilityUploadRequest()
             {
-                BucketName = bucketName + remoteDirectory,
+                BucketName = Configuration.LoadedConfiguration.S3Config.BucketName + remoteDirectory,
                 Key = Path.GetFileName(localPath),
                 FilePath = localPath,
                 CannedACL = S3CannedACL.PublicRead

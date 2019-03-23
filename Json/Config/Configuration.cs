@@ -62,12 +62,10 @@ namespace SmashBcatDetector.Json.Config
             set;
         }
 
-        public static Configuration Load(string path) 
+        public static void Load(string path) 
         {
             LoadedConfiguration = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
             ConfigurationFilePath = path;
-
-            return LoadedConfiguration;
         }
 
         public void Write()

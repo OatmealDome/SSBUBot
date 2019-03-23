@@ -13,8 +13,11 @@ namespace SmashBcatDetector.Social
 {
     public class TwitterHandler
     {
-        public static void Initialize(TwitterConfig twitterConfig)
+        public static void Initialize()
         {
+            // Get the current configuration
+            TwitterConfig twitterConfig = Configuration.LoadedConfiguration.TwitterConfig;
+            
             // Declare a variable to hold the target credentials
             ITwitterCredentials userCredentials;
 
