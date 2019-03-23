@@ -1,1 +1,1 @@
-Bcat/DAuthApi.cs filter=git-crypt diff=git-crypt
+DAuth/* filter=git-crypt diff=git-crypt
