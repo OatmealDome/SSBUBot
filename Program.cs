@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,6 +11,7 @@ using SmashBcatDetector.Difference;
 using SmashBcatDetector.Difference.Handlers.Archival;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
+using SmashBcatDetector.Json.Config.Scheduler;
 using SmashBcatDetector.S3;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
@@ -66,13 +68,16 @@ namespace SmashBcatDetector
                 configuration.BcatConfig.Environment = "lp1";
                 configuration.DiscordConfig = new DiscordConfig();
                 configuration.DiscordConfig.Token = "cafebabe";
-                configuration.DiscordConfig.ClientId = 1234;
+                configuration.DiscordConfig.ClientId = 0;
                 configuration.DiscordConfig.Permissions = 0;
                 configuration.DiscordConfig.AdministratorIds = new List<ulong>()
                 {
                     112966101368901632, // OatmealDome
                     180994059542855681 // Simonx22
                 };
+                configuration.DiscordConfig.LoggingTargetChannel = new GuildSettings();
+                configuration.DiscordConfig.AlternatorRate = 30;
+                configuration.DiscordConfig.CommandStatistics = new ConcurrentDictionary<string, ulong>();
                 configuration.DiscordConfig.GuildSettings = new List<GuildSettings>();
                 configuration.S3Config = new S3Config();
                 configuration.S3Config.ServiceUrl = "https://s3.example.com";
@@ -80,11 +85,18 @@ namespace SmashBcatDetector
                 configuration.S3Config.AccessKey = "cafebabe";
                 configuration.S3Config.AccessKeySecret = "deadbeef";
                 configuration.SchedulerConfig = new SchedulerConfig();
+                configuration.SchedulerConfig.BcatJob = new JobSchedule();
+                configuration.SchedulerConfig.HousekeepingJob = new JobSchedule();
                 configuration.TwitterConfig = new TwitterConfig();
                 configuration.TwitterConfig.ConsumerKey = "cafebabe";
                 configuration.TwitterConfig.ConsumerSecret = "deadbeef";
                 configuration.TwitterConfig.Token = "cafebabe";
                 configuration.TwitterConfig.TokenSecret = "deadbeef";
+                configuration.TwitterConfig.CharacterCounterBinary = "/home/oatmealdome/characterCounter";
+                configuration.TwitterConfig.IsActivated = true;
+                configuration.WebConfig = new WebConfig();
+                configuration.WebConfig.ContainerIndexPath = "/home/oatmealdome/www/index.json";
+                configuration.WebConfig.ContainerListPath = "/home/oatmealdome/www/list/{0}.json";
                 configuration.FirstRunCompleted = false;
 
                 // Write out the default config
