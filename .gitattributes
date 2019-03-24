@@ -1,2 +1,3 @@
 DAuth/* filter=git-crypt diff=git-crypt
 Json/Config/NintendoCdnConfig.cs filter=git-crypt diff=git-crypt
+Core/EdgeTokenManager.cs filter=git-crypt diff=git-crypt
