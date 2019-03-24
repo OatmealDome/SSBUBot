@@ -187,7 +187,7 @@ namespace Bcat
                 {
                     // Create the request message
                     HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, url);
-                    message.Headers.Add("X-Nintendo-DenebEdgeToken", await EdgeTokenManager.GetEdgeToken());
+                    message.Headers.Add("X-Nintendo-DenebEdgeToken", await EdgeTokenManager.GetEdgeToken(EdgeTokenManager.QLAUNCH_CLIENT_ID));
 
                     // Send the request
                     using (HttpResponseMessage response = await httpClient.SendAsync(message))
