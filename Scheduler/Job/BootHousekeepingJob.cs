@@ -99,7 +99,7 @@ namespace SmashBcatDetector.Scheduler.Job
             // Save the configuration
             Configuration.LoadedConfiguration.Write();
 
-            await DiscordBot.LoggingChannel.SendMessageAsync($"**[HousekeepingJob]** Scheduling immediate BCAT check");
+            await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling immediate BCAT check");
 
             // Schedule a BCAT check now
             await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
