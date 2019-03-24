@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Bcat.News;
 using Bcat.News.Catalog;
 using MessagePack;
+using SmashBcatDetector.Core;
 using SmashBcatDetector.Json.Config;
 
 namespace Bcat
@@ -181,20 +183,29 @@ namespace Bcat
 
             while (true)
             {
-                // Check the number of retries
-                if (retries == 0)
-                {
-                    throw new Exception("HTTP request failure");
-                }
-                
                 try 
                 {
-                    using (HttpResponseMessage response = await httpClient.GetAsync(url))
+                    // Create the request message
+                    HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get, url);
+                    message.Headers.Add("X-Nintendo-DenebEdgeToken", await EdgeTokenManager.GetEdgeToken());
+
+                    // Send the request
+                    using (HttpResponseMessage response = await httpClient.SendAsync(message))
                     using (HttpContent content = response.Content)
                     {
                         if (!response.IsSuccessStatusCode)
                         {
-                            throw new Exception("BCAT request not a success (" + response.StatusCode + ")");
+                            if (response.StatusCode == HttpStatusCode.Forbidden)
+                            {
+                                // Probably isn't recoverable without human intervention
+                                retries = 0;
+
+                                throw new Exception("Received 403 Forbidden from BCAT");
+                            }
+                            else
+                            {
+                                throw new Exception("BCAT request not a success (" + response.StatusCode + ")");
+                            }
                         }
 
                         return await content.ReadAsByteArrayAsync();
@@ -202,16 +213,21 @@ namespace Bcat
                 }
                 catch (Exception e)
                 {
+                    // Decrement the retries
+                    retries--;
+
+                    // Check the number of retries
+                    if (retries <= 0)
+                    {
+                        throw new Exception("HTTP request failure", e);
+                    }
+
                     Console.WriteLine("WARNING: BCAT request failed, waiting 5 seconds (retries remaining = " + retries + ")");
                     Console.WriteLine(e.ToString());
 
                     // Wait for 5 seconds
                     Thread.Sleep(5000);
-
-                    // Decrement the retries
-                    retries--;
                 }
-                
             }
         }
 
