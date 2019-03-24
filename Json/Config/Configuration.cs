@@ -15,6 +15,13 @@ namespace SmashBcatDetector.Json.Config
             set;
         }
 
+        [JsonProperty("Keyset")]
+        public KeysetConfig KeysetConfig
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("Discord")]
         public DiscordConfig DiscordConfig
         {
