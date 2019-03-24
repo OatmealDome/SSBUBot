@@ -121,6 +121,9 @@ namespace SmashBcatDetector
             // Initialize the HandlerMapper
             HandlerMapper.Initialize();
 
+            // Initialize DAuth
+            DAuthApi.Initialize();
+
             // Initialize BCAT
             BcatApi.Initialize();
 
