@@ -64,9 +64,7 @@ namespace SmashBcatDetector
 
                 // Set defaults
                 configuration.CdnConfig = new NintendoCdnConfig();
-                configuration.CdnConfig.Certificate = "/home/oatmealdome/switch.pfx";
-                configuration.CdnConfig.SerialNumber = "XAW1000000000";
-                configuration.CdnConfig.Environment = "lp1";
+                configuration.CdnConfig.SetToDefaults();
                 configuration.DiscordConfig = new DiscordConfig();
                 configuration.DiscordConfig.Token = "cafebabe";
                 configuration.DiscordConfig.ClientId = 0;
