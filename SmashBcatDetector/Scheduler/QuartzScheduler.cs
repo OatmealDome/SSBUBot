@@ -22,8 +22,13 @@ namespace SmashBcatDetector.Scheduler
             // Start the Scheduler
             await Scheduler.Start();
 
-            // Schedule important jobs
-            await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.BcatJob);
+            // Schedule BCAT job in production
+            if (Configuration.LoadedConfiguration.IsProduction)
+            {
+                await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.BcatJob);
+            }
+
+            // Schedule the recurring housekeeping job
             await ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.HousekeepingJob);
         }
 
