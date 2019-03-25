@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Rest;
@@ -10,6 +11,8 @@ namespace SmashBcatDetector.Social.Discord
 {
     public abstract class InteractiveMessage
     {
+        private static readonly SemaphoreSlim Semaphore = new SemaphoreSlim(1, 1);
+        
         protected RestUserMessage TargetMessage
         {
             get;
@@ -55,9 +58,15 @@ namespace SmashBcatDetector.Social.Discord
 
         public async Task ReactionAdded(SocketReaction reaction)
         {
+            // Acquire the semaphore
+            await Semaphore.WaitAsync();
+
             // Handle the reaction if needed and if it's from the executor
             if (!HandleReaction(reaction.Emote) || reaction.UserId != User.Id)
             {
+                // Release the semaphore
+                Semaphore.Release();
+
                 return;
             }
 
@@ -73,6 +82,9 @@ namespace SmashBcatDetector.Social.Discord
 
             // Add and clear any reactions if needed
             await AddReactions(reaction);
+
+            // Release the semaphore
+            Semaphore.Release();
         }
 
         public async Task ClearReactions()
