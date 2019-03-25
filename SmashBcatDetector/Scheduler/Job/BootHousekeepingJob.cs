@@ -99,10 +99,14 @@ namespace SmashBcatDetector.Scheduler.Job
             // Save the configuration
             Configuration.LoadedConfiguration.Write();
 
-            await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling immediate BCAT check");
+            // Check if this is the production bot
+            if (Configuration.LoadedConfiguration.IsProduction)
+            {
+                await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling immediate BCAT check");
 
-            // Schedule a BCAT check now
-            await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
+                // Schedule a BCAT check now
+                await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
+            }
         }
         
     }
