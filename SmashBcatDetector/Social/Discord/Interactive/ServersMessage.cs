@@ -7,17 +7,18 @@ using Discord.WebSocket;
 
 namespace SmashBcatDetector.Social.Discord.Interactive
 {
-    public class ServersMessage : InteractiveMessage
+    public class ServersMessage : PagedInteractiveMessage
     {
         private List<IEnumerable<SocketGuild>> guildLists;
-        private int currentPage = 0;
         private int totalGuilds;
 
-        // Emotes
-        private IEmote EMOTE_TO_BEGINNING = new Emoji("\u23EA"); // ⏪
-        private IEmote EMOTE_BACK = new Emoji("\u25C0"); // ◀️
-        private IEmote EMOTE_FORWARD = new Emoji("\u25B6"); // ▶️
-        private IEmote EMOTE_TO_END = new Emoji("\u23E9"); // ⏩
+        protected override int LastPage
+        {
+            get
+            {
+                return guildLists.Count - 1;
+            }
+        }
 
         public ServersMessage()
         {
@@ -42,7 +43,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             string description = "```";
 
             // Loop over every guild in the current list
-            foreach (SocketGuild guild in guildLists[currentPage])
+            foreach (SocketGuild guild in guildLists[this.CurrentPage])
             {
                 description += $"{guild.Name} ({guild.Id})\n";
             }
@@ -51,7 +52,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
 
             // Construct the footer
             EmbedFooterBuilder footerBuilder = new EmbedFooterBuilder()
-                .WithText($"Page {currentPage + 1} / {guildLists.Count}, found {totalGuilds} total");
+                .WithText($"Page {this.CurrentPage + 1} / {this.LastPage}, found {totalGuilds} total");
 
             // Construct the embed
             Embed embed = new EmbedBuilder()
@@ -66,64 +67,6 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             {
                 Embed = embed
             };
-        }
-
-        public override bool HandleReaction(IEmote emote)
-        {
-            if (emote.Name == EMOTE_TO_BEGINNING.Name)
-            {
-                currentPage = 0;
-                return true;
-            }
-            else if (emote.Name == EMOTE_BACK.Name && currentPage > 0)
-            {
-                currentPage--;
-                return true;
-            }
-            else if (emote.Name == EMOTE_FORWARD.Name && currentPage < guildLists.Count)
-            {
-                currentPage++;
-                return true;
-            }
-            else if (emote.Name == EMOTE_TO_END.Name)
-            {
-                currentPage = guildLists.Count - 1;
-                return true;
-            }
-
-            return false;
-        }
-
-        public override async Task AddReactions(SocketReaction reaction)
-        {
-            if (currentPage == 0 && guildLists.Count > 1)
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
-            }
-            else if ((currentPage == 1 && !HasReaction(EMOTE_BACK)) || (currentPage == guildLists.Count - 2 && !HasReaction(EMOTE_FORWARD))) // first page or second to last page
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
-            }
-            else if (currentPage == guildLists.Count - 1)
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
-            }
-            else
-            {
-                // Clear the user's reaction on this message
-                await targetMessage.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            }
         }
 
     }

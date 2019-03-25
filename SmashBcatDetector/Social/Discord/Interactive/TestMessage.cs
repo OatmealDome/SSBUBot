@@ -7,16 +7,17 @@ using Discord.WebSocket;
 
 namespace SmashBcatDetector.Social.Discord.Interactive
 {
-    public class TestMessage : InteractiveMessage
+    public class TestMessage : PagedInteractiveMessage
     {
         private List<IEnumerable<int>> guildLists;
-        private int currentPage = 0;
 
-        // Emotes
-        private IEmote EMOTE_TO_BEGINNING = new Emoji("\u23EA"); // ⏪
-        private IEmote EMOTE_BACK = new Emoji("\u25C0"); // ◀️
-        private IEmote EMOTE_FORWARD = new Emoji("\u25B6"); // ▶️
-        private IEmote EMOTE_TO_END = new Emoji("\u23E9"); // ⏩
+        protected override int LastPage
+        {
+            get
+            {
+                return guildLists.Count - 1;
+            }
+        }
 
         public TestMessage()
         {
@@ -44,7 +45,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             string description = "";
 
             // Loop over every guild in the current list
-            foreach (int guild in guildLists[currentPage])
+            foreach (int guild in guildLists[this.CurrentPage])
             {
                 description += $"{guild}\n";
             }
@@ -62,64 +63,6 @@ namespace SmashBcatDetector.Social.Discord.Interactive
                 Embed = embed
             };
         }
-
-        public override bool HandleReaction(IEmote emote)
-        {
-            if (emote.Name == EMOTE_TO_BEGINNING.Name)
-            {
-                currentPage = 0;
-                return true;
-            }
-            else if (emote.Name == EMOTE_BACK.Name && currentPage > 0)
-            {
-                currentPage--;
-                return true;
-            }
-            else if (emote.Name == EMOTE_FORWARD.Name && currentPage < guildLists.Count)
-            {
-                currentPage++;
-                return true;
-            }
-            else if (emote.Name == EMOTE_TO_END.Name)
-            {
-                currentPage = guildLists.Count - 1;
-                return true;
-            }
-
-            return false;
-        }
-
-        public override async Task AddReactions(SocketReaction reaction)
-        {
-            if (currentPage == 0)
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
-            }
-            else if ((currentPage == 1 && !HasReaction(EMOTE_BACK)) || (currentPage == guildLists.Count - 2 && !HasReaction(EMOTE_FORWARD))) // first page or second to last page
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
-            }
-            else if (currentPage == guildLists.Count - 1)
-            {
-                await targetMessage.RemoveAllReactionsAsync();
-
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
-            }
-            else
-            {
-                // Clear the user's reaction on this message
-                await targetMessage.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
-            }
-        }
-
+        
     }
 }
