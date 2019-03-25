@@ -57,6 +57,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             // Construct the embed
             Embed embed = new EmbedBuilder()
                 .WithTitle("Server List")
+                .WithAuthor(this.user)
                 .WithDescription(description)
                 .WithFooter(footerBuilder)
                 .WithColor(Color.Blue)
