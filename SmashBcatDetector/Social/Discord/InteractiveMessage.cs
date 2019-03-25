@@ -10,26 +10,35 @@ namespace SmashBcatDetector.Social.Discord
 {
     public abstract class InteractiveMessage
     {
-        protected RestUserMessage targetMessage = null;
-        protected IUser user;
+        protected RestUserMessage TargetMessage
+        {
+            get;
+            set;
+        }
+
+        protected IUser User
+        {
+            get;
+            set;
+        }
 
         public ulong MessageId
         {
             get
             {
-                return targetMessage != null ? targetMessage.Id : 0;
+                return TargetMessage != null ? TargetMessage.Id : 0;
             }
         }
 
         protected InteractiveMessage(IUser user)
         {
-            this.user = user;
+            this.User = user;
         }
 
         public async Task SendInitialMessage(ISocketMessageChannel targetChannel)
         {
             // Check if we've already sent the initial message
-            if (targetMessage != null)
+            if (TargetMessage != null)
             {
                 throw new Exception("Cannot send initial message twice");
             }
@@ -38,7 +47,7 @@ namespace SmashBcatDetector.Social.Discord
             MessageProperties properties = CreateMessageProperties();
 
             // Send the message
-            targetMessage = await targetChannel.SendMessageAsync(text: properties.Content.GetValueOrDefault(), embed: properties.Embed.GetValueOrDefault());
+            TargetMessage = await targetChannel.SendMessageAsync(text: properties.Content.GetValueOrDefault(), embed: properties.Embed.GetValueOrDefault());
 
             // Add the reactions
             await AddReactions(null);
@@ -56,7 +65,7 @@ namespace SmashBcatDetector.Social.Discord
             MessageProperties newProperties = CreateMessageProperties();
 
             // Modify the message
-            await targetMessage.ModifyAsync(properties =>
+            await TargetMessage.ModifyAsync(properties =>
             {
                 properties.Content = newProperties.Content;
                 properties.Embed = newProperties.Embed;
@@ -68,12 +77,12 @@ namespace SmashBcatDetector.Social.Discord
 
         public async Task ClearReactions()
         {
-            await targetMessage.RemoveAllReactionsAsync();
+            await TargetMessage.RemoveAllReactionsAsync();
         }
 
         protected bool HasReaction(IEmote emote)
         {
-            return targetMessage.Reactions.Count(x => x.Key.Name == emote.Name) > 0;
+            return TargetMessage.Reactions.Count(x => x.Key.Name == emote.Name) > 0;
         }
 
         public abstract MessageProperties CreateMessageProperties();

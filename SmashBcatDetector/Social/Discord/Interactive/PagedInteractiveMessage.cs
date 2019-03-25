@@ -72,31 +72,31 @@ namespace SmashBcatDetector.Social.Discord.Interactive
         {
             if (CurrentPage == 0 && LastPage > 1)
             {
-                await targetMessage.RemoveAllReactionsAsync();
+                await this.TargetMessage.RemoveAllReactionsAsync();
 
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
+                await this.TargetMessage.AddReactionAsync(EMOTE_FORWARD);
+                await this.TargetMessage.AddReactionAsync(EMOTE_TO_END);
             }
             else if ((CurrentPage == 1 && !HasReaction(EMOTE_BACK)) || (CurrentPage == LastPage - 1 && !HasReaction(EMOTE_FORWARD))) // first page or second to last page
             {
-                await targetMessage.RemoveAllReactionsAsync();
+                await this.TargetMessage.RemoveAllReactionsAsync();
 
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
-                await targetMessage.AddReactionAsync(EMOTE_FORWARD);
-                await targetMessage.AddReactionAsync(EMOTE_TO_END);
+                await this.TargetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
+                await this.TargetMessage.AddReactionAsync(EMOTE_BACK);
+                await this.TargetMessage.AddReactionAsync(EMOTE_FORWARD);
+                await this.TargetMessage.AddReactionAsync(EMOTE_TO_END);
             }
             else if (CurrentPage == LastPage)
             {
-                await targetMessage.RemoveAllReactionsAsync();
+                await this.TargetMessage.RemoveAllReactionsAsync();
 
-                await targetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
-                await targetMessage.AddReactionAsync(EMOTE_BACK);
+                await this.TargetMessage.AddReactionAsync(EMOTE_TO_BEGINNING);
+                await this.TargetMessage.AddReactionAsync(EMOTE_BACK);
             }
             else
             {
                 // Clear the user's reaction on this message
-                await targetMessage.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
+                await this.TargetMessage.RemoveReactionAsync(reaction.Emote, reaction.User.Value);
             }
         }
 
