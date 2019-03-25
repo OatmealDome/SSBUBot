@@ -19,7 +19,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             }
         }
 
-        public TestMessage()
+        public TestMessage(IUser user) : base(user)
         {
             // Get the guilds
             List<int> guilds = new List<int>();

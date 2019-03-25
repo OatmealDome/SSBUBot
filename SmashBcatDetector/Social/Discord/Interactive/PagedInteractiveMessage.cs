@@ -23,6 +23,11 @@ namespace SmashBcatDetector.Social.Discord.Interactive
         private IEmote EMOTE_FORWARD = new Emoji("\u25B6"); // ▶️
         private IEmote EMOTE_TO_END = new Emoji("\u23E9"); // ⏩
 
+        protected PagedInteractiveMessage(IUser user) : base(user)
+        {
+
+        }
+
         public override bool HandleReaction(IEmote emote)
         {
             if (emote.Name == EMOTE_TO_BEGINNING.Name)

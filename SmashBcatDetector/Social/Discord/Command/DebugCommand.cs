@@ -31,7 +31,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             //await Context.Channel.SendMessageAsync("test <:thonk:508037103473655831>");
             //throw new Exception("test exception");
 
-            TestMessage testMessage = new TestMessage();
+            TestMessage testMessage = new TestMessage(Context.User);
             await DiscordBot.SendInteractiveMessageAsync(Context.Channel, testMessage);
 
             //RecurringHousekeepingJob job = new RecurringHousekeepingJob();

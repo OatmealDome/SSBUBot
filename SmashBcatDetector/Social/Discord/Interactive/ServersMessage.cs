@@ -20,7 +20,7 @@ namespace SmashBcatDetector.Social.Discord.Interactive
             }
         }
 
-        public ServersMessage()
+        public ServersMessage(IUser user) : base(user)
         {
             // Get the guilds
             IReadOnlyCollection<SocketGuild> guilds = DiscordBot.GetGuilds();

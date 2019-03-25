@@ -11,6 +11,7 @@ namespace SmashBcatDetector.Social.Discord
     public abstract class InteractiveMessage
     {
         protected RestUserMessage targetMessage = null;
+        protected IUser user;
 
         public ulong MessageId
         {
@@ -18,6 +19,11 @@ namespace SmashBcatDetector.Social.Discord
             {
                 return targetMessage != null ? targetMessage.Id : 0;
             }
+        }
+
+        protected InteractiveMessage(IUser user)
+        {
+            this.user = user;
         }
 
         public async Task SendInitialMessage(ISocketMessageChannel targetChannel)
@@ -40,7 +46,7 @@ namespace SmashBcatDetector.Social.Discord
 
         public async Task ReactionAdded(SocketReaction reaction)
         {
-            // Handle the reaction if needed
+            // Handle the reaction if needed and if it's from the 
             if (!HandleReaction(reaction.Emote))
             {
                 return;

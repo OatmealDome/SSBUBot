@@ -56,7 +56,7 @@ namespace SmashBcatDetector.Social.Discord.Command
         {
             DiscordUtil.CheckAdministratorPermission(Context.User.Id);
 
-            await DiscordBot.SendInteractiveMessageAsync(Context.Channel, new ServersMessage());
+            await DiscordBot.SendInteractiveMessageAsync(Context.Channel, new ServersMessage(Context.User));
         }
 
         [Command("commandstats"), Summary("Lists statistics for commands")]
