@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Nintendo.Bcat;
-using Nintendo.SmashUltimate.Text;
+using Nintendo.Text;
 using Syroot.BinaryData;
 
 namespace Nintendo.SmashUltimate.Bcat

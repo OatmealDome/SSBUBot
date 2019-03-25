@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Nintendo.Bcat;
 using SmashBcatDetector.Json.Config;
-using Nintendo.SmashUltimate.Text;
+using Nintendo.Text;
 using Syroot.BinaryData;
 
 namespace Nintendo.SmashUltimate.Bcat

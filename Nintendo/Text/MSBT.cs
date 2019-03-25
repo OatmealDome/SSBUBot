@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 
 // https://github.com/IcySon55/3DLandMSBTeditor/blob/master/MSBT.cs
-namespace Nintendo.SmashUltimate.Text
+namespace Nintendo.Text
 {
     public enum EncodingByte : byte
     {

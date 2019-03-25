@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 // https://github.com/IcySon55/3DLandMSBTeditor/blob/master/BinaryTools.cs
-namespace Nintendo.SmashUltimate.Text
+namespace Nintendo.Text
 {
     public enum ByteOrder
     {
