@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Bcat;
+using Nintendo.Bcat;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

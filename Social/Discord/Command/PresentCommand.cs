@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using SmashBcatDetector.Core;
@@ -10,7 +10,7 @@ using SmashBcatDetector.Internationalization;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {

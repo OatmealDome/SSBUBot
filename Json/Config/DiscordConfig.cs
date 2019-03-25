@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using Bcat;
+using Nintendo.Bcat;
 using SmashBcatDetector.Json.Config.Discord;
 
 namespace SmashBcatDetector.Json.Config

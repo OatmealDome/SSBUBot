@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;

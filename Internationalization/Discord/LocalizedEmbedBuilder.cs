@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Bcat;
+using Nintendo.Bcat;
 using Discord;
 
 namespace SmashBcatDetector.Internationalization.Discord
@@ -15,7 +15,7 @@ namespace SmashBcatDetector.Internationalization.Discord
             embedBuilders = new Dictionary<Language, EmbedBuilder>();
 
             // Populate the Dictionary with blank EmbedBuilders
-            foreach (Language language in SmashUltimate.Bcat.Container.LanguageOrder)
+            foreach (Language language in Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
             {
                 embedBuilders.Add(language, new EmbedBuilder());
             }

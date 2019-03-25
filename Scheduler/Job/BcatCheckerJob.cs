@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Discord.WebSocket;
 using MessagePack;
 using Quartz;
@@ -13,7 +13,7 @@ using SmashBcatDetector.Difference;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Scheduler.Job
 {
@@ -51,7 +51,7 @@ namespace SmashBcatDetector.Scheduler.Job
                         if (fileType.IsContainer())
                         {
                             // Create a Container instance
-                            SmashUltimate.Bcat.Container container = CreateSmashContainerInstance(fileType, pair.Value);
+                            Nintendo.SmashUltimate.Bcat.Container container = CreateSmashContainerInstance(fileType, pair.Value);
 
                             // Add this to the container cache
                             ContainerCache.AddFile(container, Path.GetFileName(pair.Key), pair.Value);
@@ -135,7 +135,7 @@ namespace SmashBcatDetector.Scheduler.Job
                         if (fileType.IsContainer())
                         {
                             // Create a Container instance
-                            SmashUltimate.Bcat.Container addedContainer = CreateSmashContainerInstance(fileType, data[pair.Value]);
+                            Nintendo.SmashUltimate.Bcat.Container addedContainer = CreateSmashContainerInstance(fileType, data[pair.Value]);
 
                             // Add this to the container cache
                             ContainerCache.AddFile(addedContainer, Path.GetFileName(pair.Value), rawFile);
@@ -161,10 +161,10 @@ namespace SmashBcatDetector.Scheduler.Job
                         if (fileType.IsContainer())
                         {
                             // Create a Container instance
-                            SmashUltimate.Bcat.Container addedContainer = CreateSmashContainerInstance(fileType, data[pair.Value]);
+                            Nintendo.SmashUltimate.Bcat.Container addedContainer = CreateSmashContainerInstance(fileType, data[pair.Value]);
 
                             // Overwrite this to the container cache
-                            SmashUltimate.Bcat.Container previousContainer = ContainerCache.OverwriteFile(addedContainer, Path.GetFileName(pair.Value), rawFile);
+                            Nintendo.SmashUltimate.Bcat.Container previousContainer = ContainerCache.OverwriteFile(addedContainer, Path.GetFileName(pair.Value), rawFile);
 
                             // Set the method parameters
                             parameters = new object[] { previousContainer, addedContainer };
@@ -236,7 +236,7 @@ namespace SmashBcatDetector.Scheduler.Job
             Dictionary<string, byte[]> dataDict = new Dictionary<string, byte[]>();
 
             // Loop over every directory
-            foreach (Bcat.Directory directory in topic.Directories)
+            foreach (Nintendo.Bcat.Directory directory in topic.Directories)
             {
                 // Create the local directory path
                 string localDirectory = Path.Combine(targetFolder, directory.Name);
@@ -245,7 +245,7 @@ namespace SmashBcatDetector.Scheduler.Job
                 System.IO.Directory.CreateDirectory(localDirectory);
 
                 // Loop over every data
-                foreach (Data data in directory.Data)
+                foreach (Nintendo.Bcat.Data data in directory.Data)
                 {
                     // Download the file
                     byte[] rawData = await BcatApi.DownloadContainerAndDecrypt(data.Url, Program.TITLE_ID, Program.PASSPHRASE);
@@ -271,10 +271,10 @@ namespace SmashBcatDetector.Scheduler.Job
                 Dictionary<string, string> digestDictionary = new Dictionary<string, string>();
 
                 // Loop over every directory
-                foreach (Bcat.Directory directory in topic.Directories)
+                foreach (Nintendo.Bcat.Directory directory in topic.Directories)
                 {
                     // Loop over every data
-                    foreach (Data data in directory.Data)
+                    foreach (Nintendo.Bcat.Data data in directory.Data)
                     {
                         // Add this to the List
                         digestDictionary.Add(directory.Name + "/" + data.Name, data.Digest);
@@ -323,7 +323,7 @@ namespace SmashBcatDetector.Scheduler.Job
             return differences;
         }
 
-        private SmashUltimate.Bcat.Container CreateSmashContainerInstance(FileType fileType, byte[] rawFile)
+        private Nintendo.SmashUltimate.Bcat.Container CreateSmashContainerInstance(FileType fileType, byte[] rawFile)
         {
             // Load the file into a stream
             using (MemoryStream memoryStream = new MemoryStream(rawFile))

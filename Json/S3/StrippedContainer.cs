@@ -1,5 +1,5 @@
-using Bcat;
-using SmashUltimate.Bcat;
+using Nintendo.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 using System;
 using System.Collections.Generic;
 
@@ -19,7 +19,7 @@ namespace SmashBcatDetector.Json.S3
             set;
         }
 
-        public static StrippedContainer ConvertToStrippedContainer(SmashUltimate.Bcat.Container container)
+        public static StrippedContainer ConvertToStrippedContainer(Nintendo.SmashUltimate.Bcat.Container container)
         {
             // Create a new StrippedContainer
             StrippedContainer strippedContainer = new StrippedContainer();

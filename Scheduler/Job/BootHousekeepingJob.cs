@@ -11,7 +11,7 @@ using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Scheduler.Job
 {
@@ -30,7 +30,7 @@ namespace SmashBcatDetector.Scheduler.Job
                 // Get the current DateTime in UTC
                 DateTime nowTime = DateTime.UtcNow;
 
-                async Task ScheduleArchivalIfEligible(SmashUltimate.Bcat.Container container)
+                async Task ScheduleArchivalIfEligible(Nintendo.SmashUltimate.Bcat.Container container)
                 {
                     // Check if the Container's page is active
                     if (container.StartDateTime < nowTime && container.EndDateTime > nowTime)

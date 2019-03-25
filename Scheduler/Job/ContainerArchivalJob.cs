@@ -3,12 +3,12 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Quartz;
 using SmashBcatDetector.S3;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Scheduler.Job
 {
@@ -45,7 +45,7 @@ namespace SmashBcatDetector.Scheduler.Job
             try
             {
                 // Loop over every Language
-                foreach (Language language in SmashUltimate.Bcat.Container.LanguageOrder)
+                foreach (Language language in Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
                 {
                     // Get the URL for this language
                     string url = unformattedUrl.Replace("{$lang}", language.GetCode());

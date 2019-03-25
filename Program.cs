@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
+using Nintendo.DAuth;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
 using SmashBcatDetector.Difference.Handlers.Archival;
@@ -16,7 +17,7 @@ using SmashBcatDetector.S3;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector
 {

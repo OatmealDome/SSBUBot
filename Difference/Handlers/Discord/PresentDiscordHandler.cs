@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Discord;
 using Discord.WebSocket;
 using SmashBcatDetector.Internationalization;
@@ -8,7 +8,7 @@ using SmashBcatDetector.Internationalization.Discord;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Social;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference.Handlers.Discord
 {

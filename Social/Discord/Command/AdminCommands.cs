@@ -12,7 +12,7 @@ using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {

@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Internationalization;
 using SmashBcatDetector.Util;
-using SmashUltimate.Bcat;
-using SmashUltimate.Bcat.LineNewsData;
+using Nintendo.SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat.LineNewsData;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {

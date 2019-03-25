@@ -8,7 +8,7 @@ using SmashBcatDetector.Json;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.S3;
 using SmashBcatDetector.S3;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {
@@ -115,7 +115,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 // Create a dummy StrippedContainer
                 StrippedContainer dummyStrippedContainer = new StrippedContainer();
                 dummyStrippedContainer.Id = "-1";
-                dummyStrippedContainer.Text = new Dictionary<Bcat.Language, string>();
+                dummyStrippedContainer.Text = new Dictionary<Nintendo.Bcat.Language, string>();
 
                 // Create a dummy ContainerIndex
                 containerIndex = new ContainerIndex();

@@ -11,7 +11,7 @@ using SmashBcatDetector.Json;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social.Discord.Interactive;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -38,7 +38,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             //await job.Execute(null);
         }
 
-        private static string ToJson(SmashUltimate.Bcat.Container container)
+        private static string ToJson(Nintendo.SmashUltimate.Bcat.Container container)
         {
             return JsonConvert.SerializeObject(container, new JsonSerializerSettings()
             {

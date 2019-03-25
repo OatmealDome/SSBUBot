@@ -1,4 +1,4 @@
-using Bcat;
+using Nintendo.Bcat;
 
 namespace SmashBcatDetector.Json.Config.Discord
 {

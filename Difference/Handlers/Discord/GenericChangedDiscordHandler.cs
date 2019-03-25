@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bcat;
+using Nintendo.Bcat;
 using Discord.WebSocket;
 using SmashBcatDetector.Internationalization;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Social;
-using SmashUltimate.Bcat;
+using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference.Handlers.Discord
 {
@@ -19,7 +19,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         [DifferenceHandler(FileType.LineNews, DifferenceType.Changed, 100)]
         [DifferenceHandler(FileType.PopUpNews, DifferenceType.Changed, 100)]
         [DifferenceHandler(FileType.Present, DifferenceType.Changed, 100)]
-        public static async Task HandleChanged(SmashUltimate.Bcat.Container previousContainer, SmashUltimate.Bcat.Container newContainer)
+        public static async Task HandleChanged(Nintendo.SmashUltimate.Bcat.Container previousContainer, Nintendo.SmashUltimate.Bcat.Container newContainer)
         {
             // Localize the changed alert text
             string alertTextKey = "**[Change]** The data for the {0} with ID {1} was modified.";

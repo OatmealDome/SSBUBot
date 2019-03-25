@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Bcat;
+using Nintendo.Bcat;
 
 namespace SmashBcatDetector.Internationalization
 {
@@ -32,7 +32,7 @@ namespace SmashBcatDetector.Internationalization
             Dictionary<Language, string> valueDict = new Dictionary<Language, string>();
 
             // Populate the Dictionary
-            foreach (Language language in SmashUltimate.Bcat.Container.LanguageOrder)
+            foreach (Language language in Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
             {
                 // Localize the key to this Language
                 valueDict.Add(language, Localize(key, language));
@@ -63,7 +63,7 @@ namespace SmashBcatDetector.Internationalization
             Dictionary<Language, string> valueDict = new Dictionary<Language, string>();
 
             // Populate the Dictionary
-            foreach (Language language in SmashUltimate.Bcat.Container.LanguageOrder)
+            foreach (Language language in Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
             {
                 // Localize the key to this Language
                 valueDict.Add(language, value);
@@ -88,7 +88,7 @@ namespace SmashBcatDetector.Internationalization
             Dictionary<Language, string> valueDict = new Dictionary<Language, string>();
 
             // Populate the Dictionary
-            foreach (Language language in SmashUltimate.Bcat.Container.LanguageOrder)
+            foreach (Language language in Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
             {
                 // Localize the key to this Language
                 valueDict.Add(language, LocalizeDateTime(dateTime, language));
