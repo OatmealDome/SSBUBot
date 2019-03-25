@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Nintendo.Bcat;
+using Nintendo.DAuth;
 using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
@@ -30,6 +31,9 @@ namespace SmashBcatDetector.Scheduler.Job
 
             // Shutdown BCAT
             BcatApi.Dispose();
+
+            // Shutdown DAuth
+            DAuthApi.Dispose();
 
             // Shutdown the HandlerMapper
             HandlerMapper.Dispose();
