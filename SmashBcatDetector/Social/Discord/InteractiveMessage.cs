@@ -20,14 +20,6 @@ namespace SmashBcatDetector.Social.Discord
             }
         }
 
-        public DateTimeOffset InitialSentTime
-        {
-            get
-            {
-                return targetMessage != null ? targetMessage.Timestamp : DateTimeOffset.UtcNow;
-            }
-        }
-
         public async Task SendInitialMessage(ISocketMessageChannel targetChannel)
         {
             // Check if we've already sent the initial message
