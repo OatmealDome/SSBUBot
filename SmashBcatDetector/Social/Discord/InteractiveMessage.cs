@@ -55,8 +55,8 @@ namespace SmashBcatDetector.Social.Discord
 
         public async Task ReactionAdded(SocketReaction reaction)
         {
-            // Handle the reaction if needed and if it's from the 
-            if (!HandleReaction(reaction.Emote))
+            // Handle the reaction if needed and if it's from the executor
+            if (!HandleReaction(reaction.Emote) || reaction.UserId != User.Id)
             {
                 return;
             }
