@@ -49,6 +49,12 @@ namespace SmashBcatDetector.Json.Config
             set;
         }
 
+        public int MessageCacheSize
+        {
+            get;
+            set;
+        }
+
         public ConcurrentDictionary<string, ulong> CommandStatistics
         {
             get;

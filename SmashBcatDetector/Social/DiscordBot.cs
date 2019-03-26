@@ -64,7 +64,7 @@ namespace SmashBcatDetector.Social
             // Create a new configuration
             DiscordSocketConfig socketConfig = new DiscordSocketConfig()
             {
-                MessageCacheSize = 500
+                MessageCacheSize = Configuration.LoadedConfiguration.DiscordConfig.MessageCacheSize
             };
 
             // Create a new DiscordSocketClient
