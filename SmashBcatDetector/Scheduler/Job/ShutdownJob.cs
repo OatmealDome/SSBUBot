@@ -24,7 +24,7 @@ namespace SmashBcatDetector.Scheduler.Job
             await DiscordBot.Dispose();
 
             // Shutdown Twitter
-            TwitterHandler.Dispose();
+            TwitterManager.Dispose();
 
             // Shutdown S3
             S3Api.Dispose();

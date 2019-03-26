@@ -18,6 +18,7 @@ using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
+using SmashBcatDetector.Json.Config.Twitter;
 
 namespace SmashBcatDetector
 {
@@ -88,10 +89,7 @@ namespace SmashBcatDetector
                 configuration.SchedulerConfig.BcatJob = new JobSchedule();
                 configuration.SchedulerConfig.HousekeepingJob = new JobSchedule();
                 configuration.TwitterConfig = new TwitterConfig();
-                configuration.TwitterConfig.ConsumerKey = "cafebabe";
-                configuration.TwitterConfig.ConsumerSecret = "deadbeef";
-                configuration.TwitterConfig.Token = "cafebabe";
-                configuration.TwitterConfig.TokenSecret = "deadbeef";
+                configuration.TwitterConfig.TwitterCredentials = new Dictionary<string, CachedTwitterCredentials>();
                 configuration.TwitterConfig.CharacterCounterBinary = "/home/oatmealdome/characterCounter";
                 configuration.TwitterConfig.IsActivated = true;
                 configuration.WebConfig = new WebConfig();
@@ -132,7 +130,7 @@ namespace SmashBcatDetector
             S3Api.Initialize();
 
             // Initialize Twitter
-            TwitterHandler.Initialize();
+            TwitterManager.Initialize();
 
             // Initialize the DiscordBot
             await DiscordBot.Initialize();

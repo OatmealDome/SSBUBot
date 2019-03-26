@@ -23,7 +23,7 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
             string tweetUrl = string.Format(Localizer.Localize(tweetUrlKey, Language.EnglishUS), $"https://smash.oatmealdome.me/present/{present.Id}/en-US/");
 
             // Send the tweet
-            TwitterHandler.Tweet(tweetHeader, present.TitleText[Language.EnglishUS], tweetUrl, present.Image);
+            TwitterManager.GetAccount("SSBUBot").Tweet(tweetHeader, present.TitleText[Language.EnglishUS], tweetUrl, present.Image);
         }
 
     }

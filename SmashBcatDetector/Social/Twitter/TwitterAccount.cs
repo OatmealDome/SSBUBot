@@ -4,31 +4,32 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using SmashBcatDetector.Json.Config;
+using SmashBcatDetector.Json.Config.Twitter;
 using Tweetinvi;
 using Tweetinvi.Credentials.Models;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-namespace SmashBcatDetector.Social
+namespace SmashBcatDetector.Social.Twitter
 {
-    public class TwitterHandler
+    public class TwitterAccount
     {
-        public static void Initialize()
+        private ITwitterCredentials TwitterCredentials
         {
-            // Get the current configuration
-            TwitterConfig twitterConfig = Configuration.LoadedConfiguration.TwitterConfig;
-            
-            // Declare a variable to hold the target credentials
-            ITwitterCredentials userCredentials;
+            get;
+            set;
+        }
 
+        public TwitterAccount(CachedTwitterCredentials cachedCredentials)
+        {
             // Check for default values on the token
-            if (twitterConfig.Token == "cafebabe")
+            if (cachedCredentials.Token == "cafebabe")
             {
                 // Set up TwitterCredentials
-                ITwitterCredentials twitterCredentials = new TwitterCredentials(twitterConfig.ConsumerKey, twitterConfig.ConsumerSecret);
+                ITwitterCredentials authRequestCredentials = new TwitterCredentials(cachedCredentials.ConsumerKey, cachedCredentials.ConsumerSecret);
 
                 // Get an AuthenticationContext
-                IAuthenticationContext authContext = AuthFlow.InitAuthentication(twitterCredentials);
+                IAuthenticationContext authContext = AuthFlow.InitAuthentication(authRequestCredentials);
 
                 // Print out the URL
                 Console.WriteLine("** An autentication token will be generated.");
@@ -39,11 +40,11 @@ namespace SmashBcatDetector.Social
                 string pin = Console.ReadLine();
 
                 // Get the credentials back from Twitter
-                userCredentials = AuthFlow.CreateCredentialsFromVerifierCode(pin, authContext);
+                TwitterCredentials = AuthFlow.CreateCredentialsFromVerifierCode(pin, authContext);
 
                 // Get the token and token secret
-                twitterConfig.Token = userCredentials.AccessToken;
-                twitterConfig.TokenSecret = userCredentials.AccessTokenSecret;
+                cachedCredentials.Token = TwitterCredentials.AccessToken;
+                cachedCredentials.TokenSecret = TwitterCredentials.AccessTokenSecret;
 
                 // Save the configuration
                 Configuration.LoadedConfiguration.Write();
@@ -51,23 +52,15 @@ namespace SmashBcatDetector.Social
             else
             {
                 // Load the credentials from the configuration
-                userCredentials = new TwitterCredentials(twitterConfig.ConsumerKey, twitterConfig.ConsumerSecret,
-                    twitterConfig.Token, twitterConfig.TokenSecret);
+                TwitterCredentials = new TwitterCredentials(cachedCredentials.ConsumerKey, cachedCredentials.ConsumerSecret,
+                    cachedCredentials.Token, cachedCredentials.TokenSecret);
             }
-
-            // Set the user credentials
-            Auth.SetCredentials(userCredentials);
 
             // Force the library to throw exceptions
             ExceptionHandler.SwallowWebExceptions = false;
         }
 
-        public static void Dispose()
-        {
-            // TODO
-        }
-
-        public static void Tweet(string header, string text, string url, byte[] image = null)
+        public void Tweet(string header, string text, string url, byte[] image = null)
         {
             // Check if Twitter is currently activated
             if (!Configuration.LoadedConfiguration.TwitterConfig.IsActivated)
@@ -122,16 +115,22 @@ namespace SmashBcatDetector.Social
             IMedia media = null;
             if (image != null)
             {
-                media = Upload.UploadBinary(image);
+                media = Auth.ExecuteOperationWithCredentials<IMedia>(TwitterCredentials, () =>
+                {
+                    return Upload.UploadBinary(image);
+                });
             }
 
             // Publish the tweet
-            ITweet publishedTweet = Tweetinvi.Tweet.PublishTweet(finalTweet, new PublishTweetOptionalParameters()
+            Auth.ExecuteOperationWithCredentials<ITweet>(TwitterCredentials, () =>
             {
-                Medias = (image == null) ? null : new List<IMedia>()
+                return Tweetinvi.Tweet.PublishTweet(finalTweet, new PublishTweetOptionalParameters()
                 {
-                    media
-                }
+                    Medias = (image == null) ? null : new List<IMedia>()
+                    {
+                        media
+                    }
+                });
             });
 
             // Get the last exception and throw it (because the library is stupid and the option to automatically do this

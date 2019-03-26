@@ -1,31 +1,16 @@
+using System.Collections.Generic;
+using SmashBcatDetector.Json.Config.Twitter;
+
 namespace SmashBcatDetector.Json.Config
 {
     public class TwitterConfig
     {
-        public string ConsumerKey
+        public Dictionary<string, CachedTwitterCredentials> TwitterCredentials
         {
             get;
             set;
         }
-
-        public string ConsumerSecret
-        {
-            get;
-            set;
-        }
-
-        public string Token
-        {
-            get;
-            set;
-        }
-
-        public string TokenSecret
-        {
-            get;
-            set;
-        }
-
+        
         public string CharacterCounterBinary
         {
             get;
