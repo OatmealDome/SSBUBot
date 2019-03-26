@@ -62,7 +62,7 @@ namespace SmashBcatDetector.Social.Discord
             await Semaphore.WaitAsync();
 
             // Handle the reaction if needed and if it's from the executor
-            if (!HandleReaction(reaction.Emote) || reaction.UserId != User.Id)
+            if (reaction.UserId != User.Id || !HandleReaction(reaction.Emote))
             {
                 // Release the semaphore
                 Semaphore.Release();
