@@ -103,5 +103,37 @@ namespace SmashBcatDetector.Social.Discord.Command
             }
         }
 
+        [RequireBotAdministratorPrecondition]
+        [Command("stats"), Summary("Lists general statistics")]
+        public async Task GeneralStats()
+        {
+            // Get the guilds
+            IReadOnlyCollection<IGuild> guilds = DiscordBot.GetGuilds();
+
+            // Count the total number of users
+            int users = 0;
+            foreach (SocketGuild guild in guilds)
+            {
+                users += guild.MemberCount;
+            }
+
+            // Calculate the number of registered servers
+            int registeredServers = Configuration.LoadedConfiguration.DiscordConfig.GuildSettings.Count;
+            int percent = (int)Math.Round((double)(100 * registeredServers) / guilds.Count);
+
+            // Create an embed
+            Embed embed = new EmbedBuilder()
+                .WithTitle("General Statistics")
+                .AddField("Servers", $"{guilds.Count}")
+                .AddField("Registered Servers", $"{registeredServers} (approx. {percent}%)")
+                .AddField("Total Users", users)
+                .WithTimestamp(DateTimeOffset.UtcNow)
+                .WithColor(Color.Blue)
+                .Build();
+
+            // Send the embed
+            await Context.Channel.SendMessageAsync(embed: embed);
+        }
+
     }
 }
