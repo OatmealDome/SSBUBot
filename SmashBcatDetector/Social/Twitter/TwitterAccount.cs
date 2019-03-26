@@ -124,12 +124,19 @@ namespace SmashBcatDetector.Social.Twitter
             // Publish the tweet
             Auth.ExecuteOperationWithCredentials<ITweet>(TwitterCredentials, () =>
             {
+                // Create a list of IMedia
+                List<IMedia> medias = new List<IMedia>();
+
+                // Add the media if we have one
+                if (media != null)
+                {
+                    medias.Add(media);
+                }
+
+                // Publish the tweet
                 return Tweetinvi.Tweet.PublishTweet(finalTweet, new PublishTweetOptionalParameters()
                 {
-                    Medias = (image == null) ? null : new List<IMedia>()
-                    {
-                        media
-                    }
+                    Medias = medias
                 });
             });
 
