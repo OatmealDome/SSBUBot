@@ -31,11 +31,13 @@ namespace SmashBcatDetector.Social.Discord.Command
             //await Context.Channel.SendMessageAsync("test <:thonk:508037103473655831>");
             //throw new Exception("test exception");
 
-            TestMessage testMessage = new TestMessage(Context.User);
-            await DiscordBot.SendInteractiveMessageAsync(Context.Channel, testMessage);
+            //TestMessage testMessage = new TestMessage(Context.User);
+            //await DiscordBot.SendInteractiveMessageAsync(Context.Channel, testMessage);
 
             //RecurringHousekeepingJob job = new RecurringHousekeepingJob();
             //await job.Execute(null);
+
+            TwitterManager.GetAccount("SSBUBot").Tweet("[Test]", "test tweet from debug command", "URL: https://google.com");
         }
 
         private static string ToJson(Nintendo.SmashUltimate.Bcat.Container container)
