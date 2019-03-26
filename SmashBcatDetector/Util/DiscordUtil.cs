@@ -97,14 +97,6 @@ namespace SmashBcatDetector.Util
             }
         }
 
-        public static void CheckAdministratorPermission(ulong userId)
-        {
-            if (!Configuration.LoadedConfiguration.DiscordConfig.AdministratorIds.Contains(userId))
-            {
-                throw new LocalizedException("You are not allowed to do this");
-            }
-        }
-
         public static async Task ProcessJoinedGuild(SocketGuild socketGuild)
         {
             // Build an Embed

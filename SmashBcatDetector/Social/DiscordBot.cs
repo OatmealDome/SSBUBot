@@ -178,6 +178,14 @@ namespace SmashBcatDetector.Social
                             embedBuilder.WithDescription(Localizer.Localize("Not enough arguments. See ``ssbu.help`` for command help.", language));
 
                             break;
+                        case CommandError.UnmetPrecondition:
+                            // Get the PreconditionResult
+                            PreconditionResult preconditionResult = (PreconditionResult)result;
+
+                            // Set the description
+                            embedBuilder.WithDescription(Localizer.Localize(result.ErrorReason, language));
+
+                            break;
                         case CommandError.Exception:
                             // Get the IResult as an ExecuteResult
                             ExecuteResult executeResult = (ExecuteResult)result;
@@ -199,6 +207,7 @@ namespace SmashBcatDetector.Social
                                 embedBuilder.AddField(Localizer.Localize("Type", language), executeResult.Exception.GetType().Name);
                                 embedBuilder.AddField(Localizer.Localize("Message", language), executeResult.Exception.Message);
                             }
+                            
                             break;
                         default:
                             embedBuilder.WithDescription(Localizer.Localize("An unknown error has occurred.", language));

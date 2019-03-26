@@ -13,67 +13,62 @@ using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
+using SmashBcatDetector.Social.Discord.Precondition;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
     public class AdminCommands : ModuleBase<SocketCommandContext>
     {
+        [RequireBotAdministratorPrecondition]
         [Command("announce"), Summary("Announces a message to all channels")]
         public async Task Announce(string announcement)
         {
-            CheckAdministratorPermission();
-
             await DiscordBot.SendNotificationAsync($"**[SSBUBot Administrator Announcement]**\n\n{announcement}");
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, announced");
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("announcetochannel"), Summary("Announces a message to the specified channel")]
         public async Task AnnounceToChannel(ulong guildId, ulong channelId, string announcement)
         {
-            CheckAdministratorPermission();
-
             await DiscordBot.GetChannel(guildId, channelId).SendMessageAsync($"**[SSBUBot Administrator Message]**\n\n{announcement}");
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, announced");
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("saveconfig"), Summary("Saves the configuration")]
         public async Task SaveConfig()
         {
-            CheckAdministratorPermission();
-
             Configuration.LoadedConfiguration.Write();
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, configuration saved");
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("checknow"), Summary("Checks BCAT")]
         public async Task ForceBcatCheck()
         {
-            CheckAdministratorPermission();
-
             await Context.Channel.SendMessageAsync("**[Admin]** OK, scheduling immediate BCAT check");
 
             await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("reloadcontainercache"), Summary("Reloads ContainerCache")]
         public async Task ReloadContainerCache()
         {
-            CheckAdministratorPermission();
-
             await Context.Channel.SendMessageAsync("**[Admin]** OK, reloading ContainerCache");
 
             ContainerCache.Dispose();
             ContainerCache.Initialize(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("uploadcachetos3"), Summary("Uploads all ContainerCache files to S3")]
         public async Task UploadCacheToS3()
         {
-            CheckAdministratorPermission();
-
             await Context.Channel.SendMessageAsync("**[Admin]** OK, building list");
 
             List<Container> allContainers = new List<Container>();
@@ -95,11 +90,10 @@ namespace SmashBcatDetector.Social.Discord.Command
             await Context.Channel.SendMessageAsync("**[Admin]** Done");
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("shutdown"), Summary("Shuts down the bot")]
         public async Task Shutdown(bool shouldRestart = true)
         {
-            CheckAdministratorPermission();
-
             if (!shouldRestart && RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 // Write out the automatic restart disabling file
@@ -109,14 +103,6 @@ namespace SmashBcatDetector.Social.Discord.Command
             await Context.Channel.SendMessageAsync("**[Admin]** OK, scheduling immediate shutdown");
 
             await QuartzScheduler.ScheduleJob<ShutdownJob>("Immediate");
-        }
-
-        private void CheckAdministratorPermission()
-        {
-            if (!Configuration.LoadedConfiguration.DiscordConfig.AdministratorIds.Contains(Context.User.Id))
-            {
-                throw new LocalizedException("You are not allowed to do this");
-            }
         }
         
     }

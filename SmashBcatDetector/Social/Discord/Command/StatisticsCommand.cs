@@ -8,17 +8,17 @@ using Discord.WebSocket;
 using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Json.Config.Discord;
 using SmashBcatDetector.Social.Discord.Interactive;
+using SmashBcatDetector.Social.Discord.Precondition;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
     public class StatisticsCommand : ModuleBase<SocketCommandContext>
     {
+        [RequireBotAdministratorPrecondition]
         [Command("lookup"), Summary("Looks up server information")]
         public async Task ServerLookup(ulong id)
         {
-            DiscordUtil.CheckAdministratorPermission(Context.User.Id);
-            
             // Get the GuildSettings
             GuildSettings guildSettings = Configuration.LoadedConfiguration.DiscordConfig.GuildSettings.Where(settings => settings.GuildId == id).FirstOrDefault();
 
@@ -51,19 +51,17 @@ namespace SmashBcatDetector.Social.Discord.Command
             await Context.Channel.SendMessageAsync(embed: embedBuilder.Build());
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("serverlist"), Summary("Lists all servers")]
         public async Task ServerList()
         {
-            DiscordUtil.CheckAdministratorPermission(Context.User.Id);
-
             await DiscordBot.SendInteractiveMessageAsync(Context.Channel, new ServersMessage(Context.User));
         }
 
+        [RequireBotAdministratorPrecondition]
         [Command("commandstats"), Summary("Lists statistics for commands")]
         public async Task CommandStats(string command = null)
         {
-            DiscordUtil.CheckAdministratorPermission(Context.User.Id);
-
             // Check if a command was specified
             if (command != null)
             {
