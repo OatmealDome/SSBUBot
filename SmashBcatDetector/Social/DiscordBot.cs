@@ -325,8 +325,11 @@ namespace SmashBcatDetector.Social
             JobDataMap dataMap = new JobDataMap();
             dataMap.Put("messageId", (object)message.MessageId);
 
+            // Create the timeout time
+            DateTime timeoutTime = DateTime.Now.AddMinutes(Configuration.LoadedConfiguration.DiscordConfig.InteractiveMessageTimeout);
+
             // Schedule the cleanup job
-            await QuartzScheduler.ScheduleJob<InteractiveMessageCleanupJob>("Normal" + message.MessageId, DateTime.Now.AddMinutes(5), dataMap);
+            await QuartzScheduler.ScheduleJob<InteractiveMessageCleanupJob>("Normal" + message.MessageId, timeoutTime, dataMap);
         }
 
         public static async Task SendMessageToFirstWritableChannel(SocketGuild socketGuild, string message = null, Embed embed = null)
