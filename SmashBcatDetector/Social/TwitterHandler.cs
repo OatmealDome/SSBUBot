@@ -77,21 +77,17 @@ namespace SmashBcatDetector.Social
             }
             
 #if DEBUG
-            string GenerateDebugBytes()
+            if (!Configuration.LoadedConfiguration.IsProduction)
             {
+                // Generate four random bytes
                 var bytes = new byte[4];
                 using (var rng = new RNGCryptoServiceProvider())
                 {
                     rng.GetBytes(bytes);
                 }
 
-                return BitConverter.ToString(bytes).Replace("-", "").ToLower();
-            }
-
-            if (!Configuration.LoadedConfiguration.IsProduction)
-            {
-                // Twitter doesn't accept duplicate statuses, so append 6 random bytes to make it unique
-                header += " " + GenerateDebugBytes();
+                // Twitter doesn't accept duplicate statuses, so append 4 random bytes to make it unique
+                header += " " + BitConverter.ToString(bytes).Replace("-", "").ToLower();
             }
 #endif
 
