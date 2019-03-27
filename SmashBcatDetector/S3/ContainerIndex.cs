@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Json.S3
+namespace SmashBcatDetector.S3
 {
     public class ContainerIndex
     {

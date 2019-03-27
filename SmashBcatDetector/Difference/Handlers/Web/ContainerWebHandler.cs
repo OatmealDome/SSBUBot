@@ -6,7 +6,7 @@ using System.Text;
 using Newtonsoft.Json;
 using SmashBcatDetector.Json;
 using SmashBcatDetector.Core.Config;
-using SmashBcatDetector.Json.S3;
+using SmashBcatDetector.S3;
 using S3;
 using Nintendo.SmashUltimate.Bcat;
 

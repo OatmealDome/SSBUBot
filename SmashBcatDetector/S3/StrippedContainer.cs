@@ -3,7 +3,7 @@ using Nintendo.SmashUltimate.Bcat;
 using System;
 using System.Collections.Generic;
 
-namespace SmashBcatDetector.Json.S3
+namespace SmashBcatDetector.S3
 {
     public class StrippedContainer
     {
