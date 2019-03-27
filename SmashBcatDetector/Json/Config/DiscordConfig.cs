@@ -43,6 +43,12 @@ namespace SmashBcatDetector.Json.Config
             set;
         }
 
+        public string CommandPrefix
+        {
+            get;
+            set;
+        }
+
         public int AlternatorRate
         {
             get;

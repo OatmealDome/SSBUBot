@@ -68,7 +68,7 @@ namespace SmashBcatDetector.Social.Discord.Command
                 // Create an embed
                 Embed embed = new EmbedBuilder()
                     .WithTitle("Command Statistics")
-                    .WithDescription($"``ssbu.{command}`` has been called {Configuration.LoadedConfiguration.DiscordConfig.CommandStatistics[command]} times.")
+                    .WithDescription($"``{Configuration.LoadedConfiguration.DiscordConfig.CommandPrefix}{command}`` has been called {Configuration.LoadedConfiguration.DiscordConfig.CommandStatistics[command]} times.")
                     .WithTimestamp(DateTimeOffset.UtcNow)
                     .Build();
 
@@ -87,7 +87,7 @@ namespace SmashBcatDetector.Social.Discord.Command
                 // Add each command
                 foreach (KeyValuePair<string, ulong> pair in topTen)
                 {
-                    description += $"``ssbu.{pair.Key}``: {pair.Value}\n";
+                    description += $"``{Configuration.LoadedConfiguration.DiscordConfig.CommandPrefix}{pair.Key}``: {pair.Value}\n";
                 }
 
                 // Create an embed

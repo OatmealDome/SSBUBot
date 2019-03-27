@@ -151,7 +151,7 @@ namespace SmashBcatDetector.Social
 
             // Check if this message has a command
             int commandPosition = 0;
-            if (userMessage.HasStringPrefix("ssbu.", ref commandPosition))
+            if (userMessage.HasStringPrefix(Configuration.LoadedConfiguration.DiscordConfig.CommandPrefix, ref commandPosition))
             {
                 // Trigger typing
                 await commandContext.Channel.TriggerTypingAsync();

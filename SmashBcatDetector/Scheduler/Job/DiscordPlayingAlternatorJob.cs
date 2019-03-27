@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using Quartz;
+using SmashBcatDetector.Json.Config;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Social.Discord;
 
@@ -19,6 +20,9 @@ namespace SmashBcatDetector.Scheduler.Job
                 DiscordBot.PlayingState = PlayingState.Smash;
             }
 
+            // Get the command prefix
+            string commandPrefix = Configuration.LoadedConfiguration.DiscordConfig.CommandPrefix;
+
             // Set the correct text
             string text;
             switch (DiscordBot.PlayingState)
@@ -34,16 +38,16 @@ namespace SmashBcatDetector.Scheduler.Job
                         users += guild.MemberCount;
                     }
 
-                    text = $"with {users} users | ssbu.help";
+                    text = $"with {users} users | {commandPrefix}help";
                     break;
                 case PlayingState.Help:
-                    text = "command list | ssbu.help";
+                    text = $"command list | {commandPrefix}help";
                     break;
                 case PlayingState.ServerCount:
-                    text = $"in {DiscordBot.GetGuilds().Count} servers | ssbu.help";
+                    text = $"in {DiscordBot.GetGuilds().Count} servers | {commandPrefix}help";
                     break;
                 case PlayingState.Invite:
-                    text = "invite me | ssbu.invite";
+                    text = $"invite me | {commandPrefix}invite";
                     break;
                 default:
                     text = "Error";
