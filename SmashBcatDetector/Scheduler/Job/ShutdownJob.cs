@@ -6,7 +6,7 @@ using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
 using SmashBcatDetector.Core.Config;
-using SmashBcatDetector.S3;
+using S3;
 using SmashBcatDetector.Social;
 
 namespace SmashBcatDetector.Scheduler.Job

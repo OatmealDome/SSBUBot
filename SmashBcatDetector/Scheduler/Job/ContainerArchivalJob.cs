@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Quartz;
-using SmashBcatDetector.S3;
+using S3;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;

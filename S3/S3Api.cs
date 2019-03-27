@@ -7,7 +7,7 @@ using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using SmashBcatDetector.Core.Config;
 
-namespace SmashBcatDetector.S3
+namespace S3
 {
     public class S3Api
     {

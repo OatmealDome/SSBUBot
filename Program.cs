@@ -13,7 +13,7 @@ using SmashBcatDetector.Difference.Handlers.Archival;
 using SmashBcatDetector.Core.Config;
 using SmashBcatDetector.Core.Config.Discord;
 using SmashBcatDetector.Core.Config.Scheduler;
-using SmashBcatDetector.S3;
+using S3;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
