@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using SmashBcatDetector.Json.Config.Twitter;
+using SmashBcatDetector.Core.Config.Twitter;
 
-namespace SmashBcatDetector.Json.Config
+namespace SmashBcatDetector.Core.Config
 {
     public class TwitterConfig
     {

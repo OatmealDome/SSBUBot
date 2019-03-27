@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
-using SmashBcatDetector.Json.Config;
+using SmashBcatDetector.Core.Config;
 
 namespace SmashBcatDetector.S3
 {

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
-using SmashBcatDetector.Json.Config.Scheduler;
+using SmashBcatDetector.Core.Config.Scheduler;
 
-namespace SmashBcatDetector.Json.Config
+namespace SmashBcatDetector.Core.Config
 {
     public class SchedulerConfig
     {

@@ -10,7 +10,7 @@ using MessagePack;
 using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
-using SmashBcatDetector.Json.Config;
+using SmashBcatDetector.Core.Config;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;

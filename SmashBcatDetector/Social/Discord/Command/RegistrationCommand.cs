@@ -6,8 +6,8 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using SmashBcatDetector.Internationalization;
-using SmashBcatDetector.Json.Config;
-using SmashBcatDetector.Json.Config.Discord;
+using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Core.Config.Discord;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Social.Discord.Command

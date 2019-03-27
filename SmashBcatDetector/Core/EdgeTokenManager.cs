@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Nintendo.DAuth;
-using SmashBcatDetector.Json.Config;
-using SmashBcatDetector.Json.Config.NintendoCdn;
+using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Core.Config.NintendoCdn;
 using SmashBcatDetector.Social;
 
 namespace SmashBcatDetector.Core

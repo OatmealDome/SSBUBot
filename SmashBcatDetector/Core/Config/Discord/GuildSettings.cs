@@ -1,6 +1,6 @@
 using Nintendo.Bcat;
 
-namespace SmashBcatDetector.Json.Config.Discord
+namespace SmashBcatDetector.Core.Config.Discord
 {
     public class GuildSettings
     {

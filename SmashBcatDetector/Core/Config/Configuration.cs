@@ -1,7 +1,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace SmashBcatDetector.Json.Config
+namespace SmashBcatDetector.Core.Config
 {
     public class Configuration
     {

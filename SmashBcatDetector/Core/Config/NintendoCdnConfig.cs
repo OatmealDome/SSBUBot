@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using SmashBcatDetector.Json.Config.NintendoCdn;
+using SmashBcatDetector.Core.Config.NintendoCdn;
 
-namespace SmashBcatDetector.Json.Config
+namespace SmashBcatDetector.Core.Config
 {
     public class NintendoCdnConfig
     {

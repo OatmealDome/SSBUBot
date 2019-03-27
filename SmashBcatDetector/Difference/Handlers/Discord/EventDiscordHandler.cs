@@ -6,8 +6,8 @@ using Discord;
 using Discord.WebSocket;
 using SmashBcatDetector.Internationalization;
 using SmashBcatDetector.Internationalization.Discord;
-using SmashBcatDetector.Json.Config;
-using SmashBcatDetector.Json.Config.Discord;
+using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Core.Config.Discord;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
 

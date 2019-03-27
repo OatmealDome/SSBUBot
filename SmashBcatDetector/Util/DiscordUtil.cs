@@ -8,8 +8,8 @@ using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using SmashBcatDetector.Json.Config;
-using SmashBcatDetector.Json.Config.Discord;
+using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Core.Config.Discord;
 using SmashBcatDetector.Social;
 
 namespace SmashBcatDetector.Util
