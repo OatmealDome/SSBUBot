@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using SmashBcatDetector.Core.Config.Scheduler;
 
 namespace SmashBcatDetector.Core.Config
 {
@@ -44,7 +46,7 @@ namespace SmashBcatDetector.Core.Config
         }
 
         [JsonProperty("Scheduler")]
-        public SchedulerConfig SchedulerConfig
+        public Dictionary<string, JobSchedule> JobSchedules
         {
             get;
             set;

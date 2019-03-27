@@ -85,9 +85,7 @@ namespace SmashBcatDetector
                 configuration.S3Config.BucketName = "bucket";
                 configuration.S3Config.AccessKey = "cafebabe";
                 configuration.S3Config.AccessKeySecret = "deadbeef";
-                configuration.SchedulerConfig = new SchedulerConfig();
-                configuration.SchedulerConfig.BcatJob = new JobSchedule();
-                configuration.SchedulerConfig.HousekeepingJob = new JobSchedule();
+                configuration.JobSchedules = new Dictionary<string, JobSchedule>();
                 configuration.TwitterConfig = new TwitterConfig();
                 configuration.TwitterConfig.TwitterCredentials = new Dictionary<string, CachedTwitterCredentials>();
                 configuration.TwitterConfig.CharacterCounterBinary = "/home/oatmealdome/characterCounter";

@@ -25,11 +25,11 @@ namespace SmashBcatDetector.Scheduler
             // Schedule BCAT job in production
             if (Configuration.LoadedConfiguration.IsProduction)
             {
-                await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.BcatJob);
+                await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Bcat"]);
             }
 
             // Schedule the recurring housekeeping job
-            await ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.SchedulerConfig.HousekeepingJob);
+            await ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Housekeeping"]);
         }
 
         public static async Task Dispose()
