@@ -31,15 +31,8 @@ namespace SmashBcatDetector.Core.Config
             set;
         }
 
-        [JsonProperty("S3")]
-        public S3Config S3Config
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("Web")]
-        public WebConfig WebConfig
+        [JsonProperty("Twitter")]
+        public TwitterConfig TwitterConfig
         {
             get;
             set;
@@ -52,8 +45,15 @@ namespace SmashBcatDetector.Core.Config
             set;
         }
 
-        [JsonProperty("Twitter")]
-        public TwitterConfig TwitterConfig
+        [JsonProperty("S3")]
+        public S3Config S3Config
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("Web")]
+        public WebConfig WebConfig
         {
             get;
             set;
