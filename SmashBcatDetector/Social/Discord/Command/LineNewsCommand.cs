@@ -3,7 +3,7 @@ using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using SmashBcatDetector.Core;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
 using Nintendo.SmashUltimate.Bcat.LineNewsData;

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Social.Discord.Command

@@ -9,7 +9,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Quartz;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Scheduler;

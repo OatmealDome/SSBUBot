@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Nintendo.Bcat;
 
-namespace SmashBcatDetector.Internationalization
+namespace BcatBotFramework.Internationalization
 {
     public class Localizer
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Discord.WebSocket;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Social;

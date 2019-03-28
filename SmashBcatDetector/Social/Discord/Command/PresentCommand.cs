@@ -6,7 +6,7 @@ using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using SmashBcatDetector.Core;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Util;

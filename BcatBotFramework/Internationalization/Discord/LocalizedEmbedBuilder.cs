@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Nintendo.Bcat;
 using Discord;
 
-namespace SmashBcatDetector.Internationalization.Discord
+namespace BcatBotFramework.Internationalization.Discord
 {
     public class LocalizedEmbedBuilder
     {

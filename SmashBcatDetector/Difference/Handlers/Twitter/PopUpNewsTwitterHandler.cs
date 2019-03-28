@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Nintendo.Bcat;
-using SmashBcatDetector.Internationalization;
+using BcatBotFramework.Internationalization;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Difference;
