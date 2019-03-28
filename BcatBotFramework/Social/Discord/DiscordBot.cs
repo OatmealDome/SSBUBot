@@ -124,7 +124,7 @@ namespace BcatBotFramework.Social.Discord
             IsReady = true;
 
             // Set the shown game
-            PlayingState = PlayingState.Smash;
+            PlayingState = (PlayingState)0;
 
             // Schedule jobs
             await QuartzScheduler.ScheduleJob<DiscordPlayingAlternatorJob>("Normal", Configuration.LoadedConfiguration.DiscordConfig.AlternatorRate);

@@ -16,7 +16,7 @@ namespace SmashBcatDetector.Scheduler.Job
             // Check if we need to loop
             if (DiscordBot.PlayingState == PlayingState.LoopToBeginning)
             {
-                DiscordBot.PlayingState = PlayingState.Smash;
+                DiscordBot.PlayingState = (PlayingState)0;
             }
 
             // Get the command prefix
@@ -26,9 +26,6 @@ namespace SmashBcatDetector.Scheduler.Job
             string text;
             switch (DiscordBot.PlayingState)
             {
-                case PlayingState.Smash:
-                    text = "Super Smash Bros. Ultimate";
-                    break;
                 case PlayingState.UserCount:
                     // Count the total number of users
                     int users = 0;
