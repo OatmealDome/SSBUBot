@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Quartz;
 using BcatBotFramework.Social.Discord;
+using Quartz;
 
-namespace SmashBcatDetector.Scheduler.Job
+namespace BcatBotFramework.Scheduler.Job
 {
     public class InteractiveMessageCleanupJob : IJob
     {
