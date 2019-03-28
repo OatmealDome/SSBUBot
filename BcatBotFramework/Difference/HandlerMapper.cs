@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using BcatBotFramework.Difference;
 
-namespace SmashBcatDetector.Difference
+namespace BcatBotFramework.Difference
 {
     public class HandlerMapper
     {
