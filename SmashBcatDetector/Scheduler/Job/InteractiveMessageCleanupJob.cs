@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Quartz;
 using BcatBotFramework.Social.Discord;
-using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

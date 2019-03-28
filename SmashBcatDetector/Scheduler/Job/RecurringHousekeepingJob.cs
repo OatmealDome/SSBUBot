@@ -8,7 +8,6 @@ using Quartz;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using BcatBotFramework.Social.Discord;
-using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Scheduler.Job
