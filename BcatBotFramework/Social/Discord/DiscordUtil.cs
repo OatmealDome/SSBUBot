@@ -12,16 +12,19 @@ using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using BcatBotFramework.Social.Discord;
 using BcatBotFramework.Internationalization;
-using SmashBcatDetector;
+using System.Reflection;
 
 namespace BcatBotFramework.Social.Discord
 {
     public class DiscordUtil
     {
+        private static string LOCAL_DIRECTORY = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string LOCAL_EXCEPTION_LOGS_DIRECTORY = Path.Combine(LOCAL_DIRECTORY, "ExceptionLogs");
+
         public static async Task HandleException(Exception exception, string source, IGuild sourceGuild = null, ISocketMessageChannel sourceChannel = null, IUser sourceUser = null)
         {
             // Save a strack trace to a file
-            string filePath = Path.Combine(Program.LOCAL_EXCEPTION_LOGS_DIRECTORY, $"ex_{DateTime.Now.Ticks}.txt");
+            string filePath = Path.Combine(LOCAL_EXCEPTION_LOGS_DIRECTORY, $"ex_{DateTime.Now.Ticks}.txt");
 
             // Write out the stack trace
             File.WriteAllText(filePath, exception.ToString());
