@@ -16,6 +16,7 @@ using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social.Discord;
 using SmashBcatDetector.Util;
+using BcatBotFramework.Scheduler;
 
 namespace SmashBcatDetector.Social
 {

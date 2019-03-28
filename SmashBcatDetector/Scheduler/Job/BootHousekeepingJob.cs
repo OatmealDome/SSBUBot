@@ -12,6 +12,7 @@ using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
+using BcatBotFramework.Scheduler;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

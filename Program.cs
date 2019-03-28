@@ -14,7 +14,7 @@ using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using BcatBotFramework.Core.Config.Scheduler;
 using S3;
-using SmashBcatDetector.Scheduler;
+using BcatBotFramework.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;

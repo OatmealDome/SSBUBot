@@ -7,7 +7,7 @@ using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 
-namespace SmashBcatDetector.Scheduler
+namespace BcatBotFramework.Scheduler
 {
     public class QuartzScheduler
     {
