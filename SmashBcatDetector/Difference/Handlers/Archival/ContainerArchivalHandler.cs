@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Quartz;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;

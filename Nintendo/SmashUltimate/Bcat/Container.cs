@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Nintendo.Bcat;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using Nintendo.Text;
 using Syroot.BinaryData;
 

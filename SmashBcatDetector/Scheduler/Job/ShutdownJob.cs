@@ -5,7 +5,7 @@ using Nintendo.DAuth;
 using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using S3;
 using SmashBcatDetector.Social;
 

@@ -10,15 +10,16 @@ using Nintendo.DAuth;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
 using SmashBcatDetector.Difference.Handlers.Archival;
-using SmashBcatDetector.Core.Config;
-using SmashBcatDetector.Core.Config.Discord;
-using SmashBcatDetector.Core.Config.Scheduler;
+using BcatBotFramework.Core.Config;
+using BcatBotFramework.Core.Config.Discord;
+using BcatBotFramework.Core.Config.Scheduler;
 using S3;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
-using SmashBcatDetector.Core.Config.Twitter;
+using BcatBotFramework.Core.Config.Twitter;
+using SmashBcatDetector.Core.Config;
 
 namespace SmashBcatDetector
 {

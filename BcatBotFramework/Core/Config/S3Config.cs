@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Core.Config
+namespace BcatBotFramework.Core.Config
 {
     public class S3Config
     {

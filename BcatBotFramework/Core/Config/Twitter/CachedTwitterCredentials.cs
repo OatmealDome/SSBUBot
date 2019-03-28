@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Core.Config.Twitter
+namespace BcatBotFramework.Core.Config.Twitter
 {
     public class CachedTwitterCredentials
     {

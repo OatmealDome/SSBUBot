@@ -8,7 +8,7 @@ using Discord.Commands;
 using Newtonsoft.Json;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Json;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social.Discord.Interactive;
 using Nintendo.SmashUltimate.Bcat;

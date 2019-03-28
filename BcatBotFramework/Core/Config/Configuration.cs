@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using SmashBcatDetector.Core.Config.Scheduler;
+using BcatBotFramework.Core.Config.Scheduler;
 
-namespace SmashBcatDetector.Core.Config
+namespace BcatBotFramework.Core.Config
 {
     public abstract class Configuration
     {

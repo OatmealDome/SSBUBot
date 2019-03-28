@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Discord.Commands;
 using Discord.WebSocket;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Social.Discord.Precondition

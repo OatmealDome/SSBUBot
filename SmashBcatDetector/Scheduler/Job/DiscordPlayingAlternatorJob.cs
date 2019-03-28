@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using Quartz;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Social.Discord;
 

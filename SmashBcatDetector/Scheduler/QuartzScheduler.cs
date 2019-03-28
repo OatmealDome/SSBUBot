@@ -3,8 +3,8 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using Quartz;
 using Quartz.Impl;
-using SmashBcatDetector.Core.Config;
-using SmashBcatDetector.Core.Config.Scheduler;
+using BcatBotFramework.Core.Config;
+using BcatBotFramework.Core.Config.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 
 namespace SmashBcatDetector.Scheduler

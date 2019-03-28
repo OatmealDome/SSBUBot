@@ -5,10 +5,11 @@ using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using SmashBcatDetector.Json;
-using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Core.Config;
 using SmashBcatDetector.S3;
 using S3;
 using Nintendo.SmashUltimate.Bcat;
+using SmashBcatDetector.Core.Config;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {

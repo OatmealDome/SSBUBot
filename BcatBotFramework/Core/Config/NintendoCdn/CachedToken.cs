@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace SmashBcatDetector.Core.Config.NintendoCdn
+namespace BcatBotFramework.Core.Config.NintendoCdn
 {
     public class CachedToken
     {

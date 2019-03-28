@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Discord.WebSocket;
 using SmashBcatDetector.Internationalization;
-using SmashBcatDetector.Core.Config;
-using SmashBcatDetector.Core.Config.Discord;
+using BcatBotFramework.Core.Config;
+using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
 

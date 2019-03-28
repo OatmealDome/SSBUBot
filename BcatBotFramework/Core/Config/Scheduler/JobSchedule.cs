@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Core.Config.Scheduler
+namespace BcatBotFramework.Core.Config.Scheduler
 {
     public class JobSchedule
     {

@@ -1,3 +1,4 @@
+using BcatBotFramework.Core.Config;
 using Newtonsoft.Json;
 
 namespace SmashBcatDetector.Core.Config
