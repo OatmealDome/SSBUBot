@@ -5,7 +5,7 @@ namespace SmashBcatDetector.Difference
     [System.AttributeUsage(System.AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     sealed class DifferenceHandlerAttribute : System.Attribute
     {
-        public FileType FileType
+        public int Type
         {
             get;
             set;
@@ -23,10 +23,10 @@ namespace SmashBcatDetector.Difference
             set;
         }
         
-        public DifferenceHandlerAttribute(FileType fileType, DifferenceType differenceType, int priority)
+        public DifferenceHandlerAttribute(int type, DifferenceType differenceType, int priority)
         {
             // Set fields
-            this.FileType = fileType;
+            this.Type = type;
             this.DifferenceType = differenceType;
             this.Priority = priority;
         }

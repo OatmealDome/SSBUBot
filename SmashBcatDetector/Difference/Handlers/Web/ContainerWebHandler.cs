@@ -39,10 +39,10 @@ namespace SmashBcatDetector.Difference.Handlers.Web
 #endif
         };
 
-        [DifferenceHandler(FileType.Event, DifferenceType.Added, 1)]
-        [DifferenceHandler(FileType.LineNews, DifferenceType.Added, 1)]
-        [DifferenceHandler(FileType.PopUpNews, DifferenceType.Added, 1)]
-        [DifferenceHandler(FileType.Present, DifferenceType.Added, 1)]
+        [DifferenceHandler((int)FileType.Event, DifferenceType.Added, 1)]
+        [DifferenceHandler((int)FileType.LineNews, DifferenceType.Added, 1)]
+        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Added, 1)]
+        [DifferenceHandler((int)FileType.Present, DifferenceType.Added, 1)]
         public static void HandleContainer(Container container)
         {
             // Get the FileType
@@ -140,10 +140,10 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             File.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
         }
 
-        [DifferenceHandler(FileType.Event, DifferenceType.Changed, 1)]
-        [DifferenceHandler(FileType.LineNews, DifferenceType.Changed, 1)]
-        [DifferenceHandler(FileType.PopUpNews, DifferenceType.Changed, 1)]
-        [DifferenceHandler(FileType.Present, DifferenceType.Changed, 1)]
+        [DifferenceHandler((int)FileType.Event, DifferenceType.Changed, 1)]
+        [DifferenceHandler((int)FileType.LineNews, DifferenceType.Changed, 1)]
+        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Changed, 1)]
+        [DifferenceHandler((int)FileType.Present, DifferenceType.Changed, 1)]
         public static void HandleChangedContainer(Container previousContainer, Container newContainer)
         {
             HandleContainer(newContainer);

@@ -11,8 +11,8 @@ namespace SmashBcatDetector.Difference.Handlers.Archival
 {
     public class ContainerArchivalHandler
     {
-        [DifferenceHandler(FileType.Event, DifferenceType.Added, 100)]
-        [DifferenceHandler(FileType.PopUpNews, DifferenceType.Added, 100)]
+        [DifferenceHandler((int)FileType.Event, DifferenceType.Added, 100)]
+        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Added, 100)]
         public static async Task HandleContainer(Container container)
         {
             if (!Configuration.LoadedConfiguration.IsProduction)

@@ -8,7 +8,7 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
 {
     public class PopUpNewsTwitterHandler
     {
-        [DifferenceHandler(FileType.PopUpNews, DifferenceType.Added, 51)]
+        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Added, 51)]
         public static void HandleAdded(PopUpNews popUpNews)
         {
             // Check if this is an event pop-up news and is not the initial pop-up

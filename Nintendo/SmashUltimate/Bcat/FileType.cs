@@ -1,8 +1,8 @@
 namespace Nintendo.SmashUltimate.Bcat
 {
-    public enum FileType
+    public enum FileType : int
     {
-        Common,
+        Common = 0,
         Event,
         LineNews,
         PopUpNews,

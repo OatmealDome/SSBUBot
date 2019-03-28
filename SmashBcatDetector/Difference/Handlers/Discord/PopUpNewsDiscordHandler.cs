@@ -14,7 +14,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
 {
     public class PopUpNewsDiscordHandler
     {
-        [DifferenceHandler(FileType.PopUpNews, DifferenceType.Added, 50)]
+        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Added, 50)]
         public static async Task HandleAdded(PopUpNews popUpNews)
         {
             // Localize the embed description

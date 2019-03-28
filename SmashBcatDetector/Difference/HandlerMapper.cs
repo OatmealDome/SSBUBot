@@ -11,7 +11,7 @@ namespace SmashBcatDetector.Difference
         private static bool Initialized = false;
 
         // Dictionary
-        private static Dictionary<FileType, Dictionary<DifferenceType, SortedList<int, MethodInfo>>> typeCatalog;
+        private static Dictionary<int, Dictionary<DifferenceType, SortedList<int, MethodInfo>>> typeCatalog;
 
         public static void Initialize()
         {
@@ -22,19 +22,19 @@ namespace SmashBcatDetector.Difference
             }
 
             // Initialize the outer Dictionary
-            typeCatalog = new Dictionary<FileType, Dictionary<DifferenceType, SortedList<int, MethodInfo>>>();
+            typeCatalog = new Dictionary<int, Dictionary<DifferenceType, SortedList<int, MethodInfo>>>();
 
             // Perform initial population
             foreach (FileType fileType in FileTypeExtensions.GetAllFileTypes())
             {
                 // Add a blank Dictionary
-                typeCatalog.Add(fileType, new Dictionary<DifferenceType, SortedList<int, MethodInfo>>());
+                typeCatalog.Add((int)fileType, new Dictionary<DifferenceType, SortedList<int, MethodInfo>>());
 
                 // Loop over each DifferenceType
                 foreach (DifferenceType differenceType in DifferenceTypeExtensions.GetAllDifferenceTypes())
                 {
                     // Create a new List
-                    typeCatalog[fileType][differenceType] = new SortedList<int, MethodInfo>();
+                    typeCatalog[(int)fileType][differenceType] = new SortedList<int, MethodInfo>();
                 }
             }
 
@@ -58,7 +58,7 @@ namespace SmashBcatDetector.Difference
                     DifferenceHandlerAttribute diffAttribute = (DifferenceHandlerAttribute)attribute;
 
                     // Add this to the Dictionary
-                    typeCatalog[diffAttribute.FileType][diffAttribute.DifferenceType].Add(diffAttribute.Priority, methodInfo);
+                    typeCatalog[diffAttribute.Type][diffAttribute.DifferenceType].Add(diffAttribute.Priority, methodInfo);
                 }
                 
             }
@@ -81,7 +81,7 @@ namespace SmashBcatDetector.Difference
 
         public static SortedList<int, MethodInfo> GetHandlers(FileType fileType, DifferenceType differenceType)
         {
-            return typeCatalog[fileType][differenceType];
+            return typeCatalog[(int)fileType][differenceType];
         }
 
     }
