@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using BcatBotFramework.Difference;
-using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference
 {
@@ -25,20 +24,6 @@ namespace SmashBcatDetector.Difference
             // Initialize the outer Dictionary
             typeCatalog = new Dictionary<int, Dictionary<DifferenceType, SortedList<int, MethodInfo>>>();
 
-            // Perform initial population
-            foreach (FileType fileType in FileTypeExtensions.GetAllFileTypes())
-            {
-                // Add a blank Dictionary
-                typeCatalog.Add((int)fileType, new Dictionary<DifferenceType, SortedList<int, MethodInfo>>());
-
-                // Loop over each DifferenceType
-                foreach (DifferenceType differenceType in DifferenceTypeExtensions.GetAllDifferenceTypes())
-                {
-                    // Create a new List
-                    typeCatalog[(int)fileType][differenceType] = new SortedList<int, MethodInfo>();
-                }
-            }
-
             // Get ourselves
             Assembly assembly = Assembly.GetExecutingAssembly();
 
@@ -57,6 +42,20 @@ namespace SmashBcatDetector.Difference
                 {
                     // Cast the attribute to DifferenceHandlerAttribute
                     DifferenceHandlerAttribute diffAttribute = (DifferenceHandlerAttribute)attribute;
+
+                    // Check if we need to add a new Dictionary to the catalog
+                    if (!typeCatalog.ContainsKey(diffAttribute.Type))
+                    {
+                        // Create the Dictionary
+                        typeCatalog[diffAttribute.Type] = new Dictionary<DifferenceType, SortedList<int, MethodInfo>>();
+                    }
+
+                    // Check if we need to make a new SortedList
+                    if (!typeCatalog[diffAttribute.Type].ContainsKey(diffAttribute.DifferenceType))
+                    {
+                        // Create the SortedList
+                        typeCatalog[diffAttribute.Type][diffAttribute.DifferenceType] = new SortedList<int, MethodInfo>();
+                    }
 
                     // Add this to the Dictionary
                     typeCatalog[diffAttribute.Type][diffAttribute.DifferenceType].Add(diffAttribute.Priority, methodInfo);
@@ -80,9 +79,9 @@ namespace SmashBcatDetector.Difference
             typeCatalog = null;
         }
 
-        public static SortedList<int, MethodInfo> GetHandlers(FileType fileType, DifferenceType differenceType)
+        public static SortedList<int, MethodInfo> GetHandlers(int type, DifferenceType differenceType)
         {
-            return typeCatalog[(int)fileType][differenceType];
+            return typeCatalog[type][differenceType];
         }
 
     }

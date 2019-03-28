@@ -122,7 +122,7 @@ namespace SmashBcatDetector.Scheduler.Job
                     FileType fileType = FileTypeExtensions.GetTypeFromName(pair.Value);
 
                     // Get the handlers
-                    SortedList<int, MethodInfo> methodInfos = HandlerMapper.GetHandlers(fileType, pair.Key);
+                    SortedList<int, MethodInfo> methodInfos = HandlerMapper.GetHandlers((int)fileType, pair.Key);
 
                     // Declare a variable to hold the method parameters
                     object[] parameters;
