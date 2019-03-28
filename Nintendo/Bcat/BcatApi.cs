@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Nintendo.Bcat.News;
 using Nintendo.Bcat.News.Catalog;
 using MessagePack;
-using SmashBcatDetector.Core;
 using BcatBotFramework.Core.Config;
+using BcatBotFramework.Core;
 
 namespace Nintendo.Bcat
 {
