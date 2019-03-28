@@ -56,13 +56,13 @@ namespace SmashBcatDetector
             }
 
             // Declare variable to hold the configuration
-            Configuration configuration;
+            SsbuBotConfiguration configuration;
 
             // Check if the config file exists
             if (!File.Exists(LOCAL_CONFIGURATION))
             {
                 // Create a new dummy Configuration
-                configuration = new Configuration();
+                configuration = new SsbuBotConfiguration();
 
                 // Set defaults
                 configuration.CdnConfig = new NintendoCdnConfig();
@@ -110,7 +110,7 @@ namespace SmashBcatDetector
             System.IO.Directory.CreateDirectory(Program.LOCAL_EXCEPTION_LOGS_DIRECTORY);
 
             // Load the Configuration
-            Configuration.Load(LOCAL_CONFIGURATION);
+            Configuration.Load<SsbuBotConfiguration>(LOCAL_CONFIGURATION);
 
             // Initialize the ContainerCache
             ContainerCache.Initialize(LOCAL_CONTAINER_CACHE_DIRECTORY);

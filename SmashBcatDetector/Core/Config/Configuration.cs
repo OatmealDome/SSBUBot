@@ -5,7 +5,7 @@ using SmashBcatDetector.Core.Config.Scheduler;
 
 namespace SmashBcatDetector.Core.Config
 {
-    public class Configuration
+    public abstract class Configuration
     {
         public static Configuration LoadedConfiguration;
         private static string ConfigurationFilePath;
@@ -52,13 +52,6 @@ namespace SmashBcatDetector.Core.Config
             set;
         }
 
-        [JsonProperty("Web")]
-        public WebConfig WebConfig
-        {
-            get;
-            set;
-        }
-
         public bool FirstRunCompleted
         {
             get;
@@ -71,9 +64,9 @@ namespace SmashBcatDetector.Core.Config
             set;
         }
 
-        public static void Load(string path) 
+        public static void Load<T>(string path) where T : Configuration
         {
-            LoadedConfiguration = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(path));
+            LoadedConfiguration = (Configuration)JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
             ConfigurationFilePath = path;
         }
 

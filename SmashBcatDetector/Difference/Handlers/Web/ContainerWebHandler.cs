@@ -74,7 +74,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             List<StrippedContainer> containerList;
 
             // Format the container list path
-            string indexPath = string.Format(Configuration.LoadedConfiguration.WebConfig.ContainerListPath, FileTypeExtensions.GetNamePrefixFromType(fileType));
+            string indexPath = string.Format(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerListPath, FileTypeExtensions.GetNamePrefixFromType(fileType));
 
             // Check if the file exists
             if (File.Exists(indexPath))
@@ -110,7 +110,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             ContainerIndex containerIndex;
             
             // Check if the ContainerIndex exists
-            if (!File.Exists(Configuration.LoadedConfiguration.WebConfig.ContainerIndexPath))
+            if (!File.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
             {
                 // Create a dummy StrippedContainer
                 StrippedContainer dummyStrippedContainer = new StrippedContainer();
@@ -127,7 +127,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             else
             {
                 // Read the file
-                containerIndex = FromJson<ContainerIndex>(File.ReadAllText(Configuration.LoadedConfiguration.WebConfig.ContainerIndexPath));
+                containerIndex = FromJson<ContainerIndex>(File.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
             }
 
             // Get the correct property
@@ -137,7 +137,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             propertyInfo.SetValue(containerIndex, strippedContainer);
 
             // Write out the ContainerIndex
-            File.WriteAllText(Configuration.LoadedConfiguration.WebConfig.ContainerIndexPath, ToJson(containerIndex));
+            File.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
         }
 
         [DifferenceHandler(FileType.Event, DifferenceType.Changed, 1)]
