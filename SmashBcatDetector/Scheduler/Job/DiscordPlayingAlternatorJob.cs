@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 using Discord.WebSocket;
 using Quartz;
 using BcatBotFramework.Core.Config;
-using SmashBcatDetector.Social;
-using SmashBcatDetector.Social.Discord;
+using BcatBotFramework.Social.Discord;
+using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

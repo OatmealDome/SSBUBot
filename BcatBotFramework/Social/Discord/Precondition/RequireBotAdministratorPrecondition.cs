@@ -5,7 +5,7 @@ using Discord.WebSocket;
 using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Util;
 
-namespace SmashBcatDetector.Social.Discord.Precondition
+namespace BcatBotFramework.Social.Discord.Precondition
 {
     // Inherit from PreconditionAttribute
     public class RequireBotAdministratorPrecondition : PreconditionAttribute

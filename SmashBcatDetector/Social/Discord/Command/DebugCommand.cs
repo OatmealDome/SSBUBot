@@ -10,7 +10,7 @@ using SmashBcatDetector.Core;
 using SmashBcatDetector.Json;
 using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Scheduler.Job;
-using SmashBcatDetector.Social.Discord.Interactive;
+using BcatBotFramework.Social.Discord.Interactive;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Social.Discord.Command

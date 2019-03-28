@@ -11,7 +11,7 @@ using Quartz;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
 using BcatBotFramework.Core.Config;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Difference;

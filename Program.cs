@@ -16,11 +16,12 @@ using BcatBotFramework.Core.Config.Scheduler;
 using S3;
 using BcatBotFramework.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Core.Config.Twitter;
 using SmashBcatDetector.Core.Config;
 using SmashBcatDetector.Difference;
+using SmashBcatDetector.Social;
 
 namespace SmashBcatDetector
 {

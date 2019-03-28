@@ -14,11 +14,11 @@ using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
-using SmashBcatDetector.Social.Discord;
+using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 using BcatBotFramework.Scheduler;
 
-namespace SmashBcatDetector.Social
+namespace BcatBotFramework.Social.Discord
 {
     public class DiscordBot
     {

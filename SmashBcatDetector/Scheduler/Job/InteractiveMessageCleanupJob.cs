@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Quartz;
-using SmashBcatDetector.Social;
-using SmashBcatDetector.Social.Discord;
+using BcatBotFramework.Social.Discord;
+using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

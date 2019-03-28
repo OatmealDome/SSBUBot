@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 
-namespace SmashBcatDetector.Social.Discord.Interactive
+namespace BcatBotFramework.Social.Discord.Interactive
 {
     public abstract class PagedInteractiveMessage : InteractiveMessage
     {

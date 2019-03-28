@@ -4,7 +4,7 @@ using Quartz;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Difference;
 

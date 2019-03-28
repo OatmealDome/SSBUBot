@@ -7,7 +7,7 @@ using BcatBotFramework.Internationalization;
 using BcatBotFramework.Internationalization.Discord;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 using Nintendo.SmashUltimate.Bcat.LineNewsData;
 using BcatBotFramework.Difference;

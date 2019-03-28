@@ -7,9 +7,10 @@ using Discord.Commands;
 using Discord.WebSocket;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Social.Discord.Interactive;
-using SmashBcatDetector.Social.Discord.Precondition;
+using BcatBotFramework.Social.Discord.Interactive;
+using BcatBotFramework.Social.Discord.Precondition;
 using SmashBcatDetector.Util;
+using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {

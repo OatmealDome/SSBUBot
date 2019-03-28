@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Nintendo.Bcat;
 using BcatBotFramework.Internationalization;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference.Handlers.Twitter

@@ -9,7 +9,7 @@ using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference.Handlers.Archival;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Scheduler;

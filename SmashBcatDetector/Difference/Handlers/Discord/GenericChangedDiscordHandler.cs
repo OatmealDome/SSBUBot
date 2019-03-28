@@ -6,7 +6,7 @@ using Discord.WebSocket;
 using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference.Handlers.Discord

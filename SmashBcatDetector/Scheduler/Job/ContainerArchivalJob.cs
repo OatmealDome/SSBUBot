@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Quartz;
 using S3;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
 

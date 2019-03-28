@@ -7,7 +7,7 @@ using Discord;
 using Discord.Rest;
 using Discord.WebSocket;
 
-namespace SmashBcatDetector.Social.Discord
+namespace BcatBotFramework.Social.Discord
 {
     public abstract class InteractiveMessage
     {

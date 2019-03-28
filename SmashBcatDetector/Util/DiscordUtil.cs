@@ -10,7 +10,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Util
 {

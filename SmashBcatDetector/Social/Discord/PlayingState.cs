@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Social.Discord
+namespace BcatBotFramework.Social.Discord
 {
     public enum PlayingState : uint
     {

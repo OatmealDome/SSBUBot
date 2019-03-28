@@ -7,9 +7,10 @@ using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference;
 using BcatBotFramework.Core.Config;
 using S3;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Discord;
 using BcatBotFramework.Difference;
 using BcatBotFramework.Scheduler;
+using SmashBcatDetector.Social;
 
 namespace SmashBcatDetector.Scheduler.Job
 {
