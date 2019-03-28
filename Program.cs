@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Nintendo.Bcat;
 using Nintendo.DAuth;
 using SmashBcatDetector.Core;
-using SmashBcatDetector.Difference;
+using BcatBotFramework.Difference;
 using SmashBcatDetector.Difference.Handlers.Archival;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
@@ -20,6 +20,7 @@ using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Core.Config.Twitter;
 using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Difference;
 
 namespace SmashBcatDetector
 {

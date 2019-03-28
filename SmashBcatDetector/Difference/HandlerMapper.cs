@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using BcatBotFramework.Difference;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference

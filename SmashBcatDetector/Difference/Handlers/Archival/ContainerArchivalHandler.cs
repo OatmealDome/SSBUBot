@@ -6,6 +6,7 @@ using SmashBcatDetector.Scheduler;
 using SmashBcatDetector.Scheduler.Job;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
+using BcatBotFramework.Difference;
 
 namespace SmashBcatDetector.Difference.Handlers.Archival
 {

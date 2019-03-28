@@ -1,6 +1,6 @@
 using System;
 
-namespace SmashBcatDetector.Difference
+namespace BcatBotFramework.Difference
 {
     public class DifferenceTypeExtensions
     {

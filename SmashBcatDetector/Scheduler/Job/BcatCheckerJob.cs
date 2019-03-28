@@ -14,6 +14,7 @@ using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Social;
 using SmashBcatDetector.Util;
 using Nintendo.SmashUltimate.Bcat;
+using BcatBotFramework.Difference;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

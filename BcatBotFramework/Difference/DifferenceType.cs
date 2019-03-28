@@ -1,4 +1,4 @@
-namespace SmashBcatDetector.Difference
+namespace BcatBotFramework.Difference
 {
     public enum DifferenceType
     {

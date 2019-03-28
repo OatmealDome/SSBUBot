@@ -3,6 +3,7 @@ using Nintendo.Bcat;
 using SmashBcatDetector.Internationalization;
 using SmashBcatDetector.Social;
 using Nintendo.SmashUltimate.Bcat;
+using BcatBotFramework.Difference;
 
 namespace SmashBcatDetector.Difference.Handlers.Twitter
 {

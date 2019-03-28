@@ -1,6 +1,6 @@
 using Nintendo.SmashUltimate.Bcat;
 
-namespace SmashBcatDetector.Difference
+namespace BcatBotFramework.Difference
 {
     [System.AttributeUsage(System.AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
     public abstract class DifferenceHandlerAttribute : System.Attribute

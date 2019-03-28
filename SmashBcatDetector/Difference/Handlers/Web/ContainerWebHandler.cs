@@ -10,6 +10,7 @@ using SmashBcatDetector.S3;
 using S3;
 using Nintendo.SmashUltimate.Bcat;
 using SmashBcatDetector.Core.Config;
+using BcatBotFramework.Difference;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {

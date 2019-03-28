@@ -1,3 +1,4 @@
+using BcatBotFramework.Difference;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Difference
