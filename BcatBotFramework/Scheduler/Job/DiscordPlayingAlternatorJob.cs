@@ -4,7 +4,7 @@ using Quartz;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Social.Discord;
 
-namespace SmashBcatDetector.Scheduler.Job
+namespace BcatBotFramework.Scheduler.Job
 {
     public class DiscordPlayingAlternatorJob : IJob
     {
