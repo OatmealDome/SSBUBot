@@ -3,7 +3,7 @@ using Nintendo.SmashUltimate.Bcat;
 namespace SmashBcatDetector.Difference
 {
     [System.AttributeUsage(System.AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-    sealed class DifferenceHandlerAttribute : System.Attribute
+    public abstract class DifferenceHandlerAttribute : System.Attribute
     {
         public int Type
         {

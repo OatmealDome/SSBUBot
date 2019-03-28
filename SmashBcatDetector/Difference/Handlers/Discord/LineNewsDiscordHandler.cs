@@ -15,7 +15,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
 {
     public class LineNewsDiscordHandler
     {
-        [DifferenceHandler((int)FileType.LineNews, DifferenceType.Added, 50)]
+        [SsbuBotDifferenceHandler(FileType.LineNews, DifferenceType.Added, 50)]
         public static async Task HandleAdded(LineNews lineNews)
         {
             // Localize the embed title

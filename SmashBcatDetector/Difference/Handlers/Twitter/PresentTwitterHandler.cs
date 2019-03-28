@@ -8,7 +8,7 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
 {
     public class PresentTwitterHandler
     {
-        [DifferenceHandler((int)FileType.Present, DifferenceType.Added, 51)]
+        [SsbuBotDifferenceHandler(FileType.Present, DifferenceType.Added, 51)]
         public static void HandleAdded(Present present)
         {
             // Get the tweet header

@@ -15,10 +15,10 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
     {
         // TODO: Embed-ify
         
-        /*[DifferenceHandler((int)FileType.Event, DifferenceType.Changed, 100)]
-        [DifferenceHandler((int)FileType.LineNews, DifferenceType.Changed, 100)]
-        [DifferenceHandler((int)FileType.PopUpNews, DifferenceType.Changed, 100)]
-        [DifferenceHandler((int)FileType.Present, DifferenceType.Changed, 100)]
+        /*[SsbuBotDifferenceHandler(FileType.Event, DifferenceType.Changed, 100)]
+        [SsbuBotDifferenceHandler(FileType.LineNews, DifferenceType.Changed, 100)]
+        [SsbuBotDifferenceHandler(FileType.PopUpNews, DifferenceType.Changed, 100)]
+        [SsbuBotDifferenceHandler(FileType.Present, DifferenceType.Changed, 100)]
         public static async Task HandleChanged(Nintendo.SmashUltimate.Bcat.Container previousContainer, Nintendo.SmashUltimate.Bcat.Container newContainer)
         {
             // Localize the changed alert text
