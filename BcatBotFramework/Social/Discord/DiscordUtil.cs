@@ -11,8 +11,10 @@ using Discord.WebSocket;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using BcatBotFramework.Social.Discord;
+using BcatBotFramework.Internationalization;
+using SmashBcatDetector;
 
-namespace SmashBcatDetector.Util
+namespace BcatBotFramework.Social.Discord
 {
     public class DiscordUtil
     {

@@ -3,6 +3,7 @@ using Nintendo.Bcat;
 using Discord;
 using Discord.Commands;
 using BcatBotFramework.Internationalization;
+using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Util;
 
 namespace SmashBcatDetector.Social.Discord.Command

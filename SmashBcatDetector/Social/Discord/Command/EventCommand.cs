@@ -7,6 +7,7 @@ using Discord;
 using Discord.Commands;
 using SmashBcatDetector.Core;
 using BcatBotFramework.Internationalization;
+using BcatBotFramework.Social.Discord;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
 using SmashBcatDetector.Util;

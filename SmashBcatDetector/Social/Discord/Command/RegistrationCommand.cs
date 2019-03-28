@@ -8,7 +8,6 @@ using Discord.WebSocket;
 using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Util;
 using BcatBotFramework.Social.Discord;
 
 namespace SmashBcatDetector.Social.Discord.Command

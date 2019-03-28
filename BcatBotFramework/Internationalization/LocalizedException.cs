@@ -1,6 +1,6 @@
 using System;
 
-namespace SmashBcatDetector.Util
+namespace BcatBotFramework.Internationalization
 {
     [System.Serializable]
     public class LocalizedException : Exception

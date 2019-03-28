@@ -9,7 +9,7 @@ using SmashBcatDetector.Core;
 using BcatBotFramework.Internationalization;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Discord;
-using SmashBcatDetector.Util;
+using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 
 namespace SmashBcatDetector.Social.Discord.Command
