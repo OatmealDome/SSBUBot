@@ -5,7 +5,6 @@ using Quartz;
 using Quartz.Impl;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Scheduler;
-using SmashBcatDetector.Scheduler.Job;
 
 namespace BcatBotFramework.Scheduler
 {
@@ -21,15 +20,6 @@ namespace BcatBotFramework.Scheduler
 
             // Start the Scheduler
             await Scheduler.Start();
-
-            // Schedule BCAT job in production
-            if (Configuration.LoadedConfiguration.IsProduction)
-            {
-                await ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Bcat"]);
-            }
-
-            // Schedule the recurring housekeeping job
-            await ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Housekeeping"]);
         }
 
         public static async Task Dispose()
