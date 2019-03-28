@@ -4,7 +4,7 @@ using BcatBotFramework.Internationalization;
 using BcatBotFramework.Social.Discord;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Difference;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Twitter;
 
 namespace SmashBcatDetector.Difference.Handlers.Twitter
 {

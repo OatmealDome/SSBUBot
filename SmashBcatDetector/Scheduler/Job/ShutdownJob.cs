@@ -10,7 +10,7 @@ using S3;
 using BcatBotFramework.Social.Discord;
 using BcatBotFramework.Difference;
 using BcatBotFramework.Scheduler;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Twitter;
 
 namespace SmashBcatDetector.Scheduler.Job
 {

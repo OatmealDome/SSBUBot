@@ -10,7 +10,7 @@ using Tweetinvi.Credentials.Models;
 using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
-namespace SmashBcatDetector.Social.Twitter
+namespace BcatBotFramework.Social.Twitter
 {
     public class TwitterAccount
     {

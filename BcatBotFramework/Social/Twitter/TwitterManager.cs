@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Core.Config.Twitter;
-using SmashBcatDetector.Social.Twitter;
 
-namespace SmashBcatDetector.Social
+namespace BcatBotFramework.Social.Twitter
 {
     public class TwitterManager
     {

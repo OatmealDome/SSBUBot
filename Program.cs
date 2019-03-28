@@ -21,7 +21,7 @@ using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Core.Config.Twitter;
 using SmashBcatDetector.Core.Config;
 using SmashBcatDetector.Difference;
-using SmashBcatDetector.Social;
+using BcatBotFramework.Social.Twitter;
 
 namespace SmashBcatDetector
 {
