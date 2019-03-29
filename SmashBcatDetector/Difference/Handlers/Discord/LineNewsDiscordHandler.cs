@@ -20,22 +20,22 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(LineNews lineNews)
         {
             // Localize the embed title
-            Dictionary<Language, string> localizedTitles = Localizer.LocalizeToAllLanguagesWithFormat("Line News ({0})", lineNews.Id);
+            Dictionary<Language, string> localizedTitles = Localizer.LocalizeToAllLanguagesWithFormat("line_news.title", lineNews.Id);
 
             // Localize the embed description
-            // Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("[Click here for more information]({0}).", $"https://smash.oatmealdome.me/line_news/{lineNews.Id}/{pair.Key.GetCode()}/");
+            // Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("line_news.more_info", $"https://smash.oatmealdome.me/line_news/{lineNews.Id}/{pair.Key.GetCode()}/");
 
             // Create localized Embeds
             LocalizedEmbedBuilder localizedEmbedBuilder = new LocalizedEmbedBuilder()
                 .WithTitle(localizedTitles)
                 //.WithDescription(localizedDescriptions)
-                .AddField("Start Time", Localizer.LocalizeDateTimeToAllLanguages(lineNews.StartDateTime))
-                .AddField("Expiry Time", Localizer.LocalizeDateTimeToAllLanguages(lineNews.EndDateTime));
+                .AddField("line_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(lineNews.StartDateTime))
+                .AddField("line_news.end_time", Localizer.LocalizeDateTimeToAllLanguages(lineNews.EndDateTime));
 
             // Add every OneLine
             foreach (OneLine oneLine in lineNews.OneLines)
             {
-                localizedEmbedBuilder.AddField(Localizer.LocalizeToAllLanguagesWithFormat("Line {0}", oneLine.Id), oneLine.Text);
+                localizedEmbedBuilder.AddField(Localizer.LocalizeToAllLanguagesWithFormat("line_news.line_title", oneLine.Id), oneLine.Text);
             }
 
             // Create localized Embeds

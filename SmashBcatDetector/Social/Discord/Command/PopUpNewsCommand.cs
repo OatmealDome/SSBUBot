@@ -36,19 +36,18 @@ namespace SmashBcatDetector.Social.Discord.Command
             // Check if this exists
             if (popUpNews == null)
             {
-                throw new LocalizedException("No pop-up news exists with this ID");
+                throw new LocalizedException("popup_news.not_found");
             }
 
             // Localize the description
-            string key = "{0}\n\n[Click here for more information]({1}).";
-            string localizedDescription = string.Format(Localizer.Localize(key, language), popUpNews.ContentText[language], $"https://smash.oatmealdome.me/popup_news/{popUpNews.Id}/{language.GetCode()}/");
+            string localizedDescription = string.Format(Localizer.Localize("popup_news.description", language), popUpNews.ContentText[language], $"https://smash.oatmealdome.me/popup_news/{popUpNews.Id}/{language.GetCode()}/");
 
             // Construct the Embed
             Embed embed = new EmbedBuilder()
                 .WithTitle(popUpNews.TitleText[language])
                 .WithDescription(localizedDescription)
-                .AddField(Localizer.Localize("Pop-Up Start Time", language), Localizer.LocalizeDateTime(popUpNews.StartDateTime, language), true)
-                .AddField(Localizer.Localize("Expiry Time", language), Localizer.LocalizeDateTime(popUpNews.EndDateTime, language), true)
+                .AddField(Localizer.Localize("popup_news.start_time", language), Localizer.LocalizeDateTime(popUpNews.StartDateTime, language), true)
+                .AddField(Localizer.Localize("popup_news.end_time", language), Localizer.LocalizeDateTime(popUpNews.EndDateTime, language), true)
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/popup_news/{popUpNews.Id}/image.jpg")
                 .Build();
             

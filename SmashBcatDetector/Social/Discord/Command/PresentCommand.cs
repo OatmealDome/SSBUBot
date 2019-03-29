@@ -36,12 +36,11 @@ namespace SmashBcatDetector.Social.Discord.Command
             // Check if this exists
             if (present == null)
             {
-                throw new LocalizedException("No present exists with this ID");
+                throw new LocalizedException("present.not_found");
             }
 
             // Localize the description
-            string key = "{0}\n\n[Click here for more information]({1}).";
-            string localizedDescription = string.Format(Localizer.Localize(key, language), present.ContentText[language], $"https://smash.oatmealdome.me/present/{present.Id}/{language.GetCode()}/");
+            string localizedDescription = string.Format(Localizer.Localize("present.description", language), present.ContentText[language], $"https://smash.oatmealdome.me/present/{present.Id}/{language.GetCode()}/");
 
             // Construct the image URL
             string url = $"https://cdn.oatmealdome.me/smash/present/{present.Id}/image.jpg";
@@ -50,8 +49,8 @@ namespace SmashBcatDetector.Social.Discord.Command
             Embed embed = new EmbedBuilder()
                 .WithTitle(present.TitleText[language])
                 .WithDescription(localizedDescription)
-                .AddField(Localizer.Localize("Availability Start Time", language), Localizer.LocalizeDateTime(present.StartDateTime, language), true)
-                .AddField(Localizer.Localize("Expiry Time", language), Localizer.LocalizeDateTime(present.EndDateTime, language), true)
+                .AddField(Localizer.Localize("present.start_time", language), Localizer.LocalizeDateTime(present.StartDateTime, language), true)
+                .AddField(Localizer.Localize("present.end_time", language), Localizer.LocalizeDateTime(present.EndDateTime, language), true)
                 .WithImageUrl(url)
                 .Build();
 

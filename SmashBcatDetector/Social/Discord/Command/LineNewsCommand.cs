@@ -32,27 +32,27 @@ namespace SmashBcatDetector.Social.Discord.Command
             // Check if this exists
             if (lineNews == null)
             {
-                throw new LocalizedException("No line news exists with this ID");
+                throw new LocalizedException("line_news.not_found");
             }
 
             // Localize the title
-            string titleKey = "Line News ({0})";
+            string titleKey = "line_news.title";
             string localizedTitle = string.Format(Localizer.Localize(titleKey, language), lineNews.Id);
 
             // Localize the description
-            string descriptionKey = "[Click here for more information]({0}).";
+            string descriptionKey = "line_news.description";
             string localizedDescription = string.Format(Localizer.Localize(descriptionKey, language), $"https://smash.oatmealdome.me/line_news/{lineNews.Id}/{language.GetCode()}/");
 
             // Localize the line field name
-            string lineFieldNameKey = "Line {0}";
+            string lineFieldNameKey = "line_news.line_title";
             string localizedLineFieldName = Localizer.Localize(lineFieldNameKey, language);
 
             // Construct the Embed
             EmbedBuilder embedBuilder = new EmbedBuilder()
                 .WithTitle(localizedTitle)
                 //.WithDescription(localizedDescription)
-                .AddField(Localizer.Localize("Start Time", language), Localizer.LocalizeDateTime(lineNews.StartDateTime, language), true)
-                .AddField(Localizer.Localize("Expiry Time", language), Localizer.LocalizeDateTime(lineNews.EndDateTime, language), true);
+                .AddField(Localizer.Localize("line_news.start_time", language), Localizer.LocalizeDateTime(lineNews.StartDateTime, language), true)
+                .AddField(Localizer.Localize("line_news.end_time", language), Localizer.LocalizeDateTime(lineNews.EndDateTime, language), true);
 
             // Add every OneLine
             foreach (OneLine oneLine in lineNews.OneLines)

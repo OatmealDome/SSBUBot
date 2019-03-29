@@ -37,19 +37,18 @@ namespace SmashBcatDetector.Social.Discord.Command
             // Check if this exists
             if (smashEvent == null)
             {
-                throw new LocalizedException("No event exists with this ID");
+                throw new LocalizedException("event.not_found");
             }
 
             // Localize the description
-            string key = "[Click here for more information]({0}).";
-            string localizedDescription = string.Format(Localizer.Localize(key, language), $"https://smash.oatmealdome.me/event/{smashEvent.Id}/{language.GetCode()}/");
+            string localizedDescription = string.Format(Localizer.Localize("event.description", language), $"https://smash.oatmealdome.me/event/{smashEvent.Id}/{language.GetCode()}/");
 
             // Construct the Embed
             Embed embed = new EmbedBuilder()
                 .WithTitle(smashEvent.TitleText[language])
                 .WithDescription(localizedDescription)
-                .AddField(Localizer.Localize("Start Time", language), Localizer.LocalizeDateTime(smashEvent.StartDateTime, language), true)
-                .AddField(Localizer.Localize("End Time", language), Localizer.LocalizeDateTime(smashEvent.EndDateTime, language), true)
+                .AddField(Localizer.Localize("event.start_time", language), Localizer.LocalizeDateTime(smashEvent.StartDateTime, language), true)
+                .AddField(Localizer.Localize("event.end_time", language), Localizer.LocalizeDateTime(smashEvent.EndDateTime, language), true)
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/event/{smashEvent.Id}/image.jpg")
                 .Build();
 

@@ -39,7 +39,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             }
             else
             {
-                throw new LocalizedException("Unknown file type");    
+                throw new LocalizedException("list.unknown_file_type");    
             }
 
             // Get the list
@@ -82,7 +82,7 @@ namespace SmashBcatDetector.Social.Discord.Command
 
                     break;
                 default:
-                    throw new LocalizedException("Unsupported file type");
+                    throw new LocalizedException("list.unknown_file_type");
             }
 
             Embed embed = new EmbedBuilder()

@@ -19,7 +19,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(PopUpNews popUpNews)
         {
             // Localize the embed description
-            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("{0}\n\n[Click here for more information]({1}).");
+            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("popup_news.description");
 
             // Create a new Dictionary for localized descriptions with the URL
             Dictionary<Language, string> localizedDescriptionsWithUrl = new Dictionary<Language, string>();
@@ -35,8 +35,8 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
             Dictionary<Language, Embed> localizedEmbeds = new LocalizedEmbedBuilder()
                 .WithTitle(popUpNews.TitleText)
                 .WithDescription(localizedDescriptionsWithUrl)
-                .AddField("Pop-Up Start Time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.StartDateTime))
-                .AddField("Expiry Time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.EndDateTime))
+                .AddField("poup_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.StartDateTime))
+                .AddField("poup_news.end_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.EndDateTime))
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/popup_news/{popUpNews.Id}/image.jpg")
                 .Build();
             

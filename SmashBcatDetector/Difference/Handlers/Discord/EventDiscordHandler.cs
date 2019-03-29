@@ -20,7 +20,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(Event addedEvent)
         {
             // Localize the embed description
-            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("[Click here for more information]({0}).");
+            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("event.more_info");
 
             // Create a new Dictionary for localized descriptions with the URL
             Dictionary<Language, string> localizedDescriptionsWithUrl = new Dictionary<Language, string>();
@@ -32,16 +32,12 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
                 localizedDescriptionsWithUrl.Add(pair.Key, string.Format(pair.Value, $"https://smash.oatmealdome.me/event/{addedEvent.Id}/{pair.Key.GetCode()}/"));
             }
 
-            // Get the localized time field names
-            Dictionary<Language, string> startFieldName = Localizer.LocalizeToAllLanguages("Start Time");
-            Dictionary<Language, string> endFieldName = Localizer.LocalizeToAllLanguages("End Time");
-
             // Create localized Embeds
             Dictionary<Language, Embed> localizedEmbeds = new LocalizedEmbedBuilder()
                 .WithTitle(addedEvent.TitleText)
                 .WithDescription(localizedDescriptionsWithUrl)
-                .AddField("Start Time", Localizer.LocalizeDateTimeToAllLanguages(addedEvent.StartDateTime))
-                .AddField("End Time", Localizer.LocalizeDateTimeToAllLanguages(addedEvent.EndDateTime))
+                .AddField("event.start_time", Localizer.LocalizeDateTimeToAllLanguages(addedEvent.StartDateTime))
+                .AddField("event.end_time", Localizer.LocalizeDateTimeToAllLanguages(addedEvent.EndDateTime))
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/event/{addedEvent.Id}/image.jpg")
                 .Build();
             

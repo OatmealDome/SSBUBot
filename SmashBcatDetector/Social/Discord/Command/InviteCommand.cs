@@ -15,19 +15,11 @@ namespace SmashBcatDetector.Social.Discord.Command
         {
             // Get the language
             Language language = DiscordUtil.GetDefaultLanguage(Context, null);
-
-            // Localize the title
-            string titleKey = "Invite";
-            string localizedTitle = Localizer.Localize(titleKey, language);
-
-            // Localize the description
-            string descriptionKey = "Please go to [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup) for instructions on how to invite SSBUBot to your server.";
-            string localizedDescription = Localizer.Localize(descriptionKey, language);
-
+            
             // Create the Embed
             Embed embed = new EmbedBuilder()
-                .WithTitle(localizedTitle)
-                .WithDescription(localizedDescription)
+                .WithTitle(Localizer.Localize("invite.title", language))
+                .WithDescription(Localizer.Localize("invite.description", language))
                 .WithColor(Color.Green)
                 .Build();
             
