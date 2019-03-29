@@ -86,8 +86,8 @@ namespace SmashBcatDetector.Social.Discord.Command
             }
 
             Embed embed = new EmbedBuilder()
-                .WithTitle("List")
-                .WithDescription("Here are the valid IDs:\n" + string.Join('\n', ids) + "")
+                .WithTitle(Localizer.Localize("list.title", language))
+                .WithDescription(Localizer.Localize("list.description", language) + string.Join('\n', ids) + "")
                 .WithColor(Color.Green)
                 .Build();
             

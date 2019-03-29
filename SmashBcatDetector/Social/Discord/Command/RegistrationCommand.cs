@@ -20,13 +20,13 @@ namespace SmashBcatDetector.Social.Discord.Command
         {
             if (Context.Guild == null)
             {
-                throw new LocalizedException("This command must be run in a server");
+                throw new LocalizedException("registration.in_dm");
             }
 
             // Check that we can write to this channel first
             if (!Context.Guild.CurrentUser.GetPermissions(channel).Has(ChannelPermission.SendMessages))
             {
-                throw new LocalizedException("SSBUBot does not have permission to send messages to the specified channel");
+                throw new LocalizedException("registration.no_permissions");
             }
 
             // Check the language code
@@ -37,7 +37,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             }
             catch (Exception)
             {
-                throw new LocalizedException("This language code is invalid. Please check the [setup guide](https://smash.oatmealdome.me/setup) or run ``ssbu.languages`` for valid codes.");
+                throw new LocalizedException("registration.bad_code");
             }
 
             // Get any existing GuildSettings for this server
@@ -59,8 +59,8 @@ namespace SmashBcatDetector.Social.Discord.Command
             guildSettings.DefaultLanguage = language;
 
             // Get the localized embed fields
-            string embedTitle = Localizer.Localize("Success", guildSettings.DefaultLanguage);
-            string embedDescription = Localizer.Localize("Your server has been registered.", guildSettings.DefaultLanguage);
+            string embedTitle = Localizer.Localize("registration.title", guildSettings.DefaultLanguage);
+            string embedDescription = Localizer.Localize("registration.description", guildSettings.DefaultLanguage);
 
             // Build the Embed
             Embed embed = new EmbedBuilder()
