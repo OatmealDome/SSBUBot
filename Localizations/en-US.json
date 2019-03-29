@@ -1,0 +1,9 @@
+{
+    "discord.error": "Error",
+    "discord.error.type": "Type",
+    "discord.error.message": "Message",
+    "discord.error.unknown_command": "Unknown command. For a list of commands, see ``ssbu.help``.",
+    "discord.error.bad_arguments": "Not enough arguments. See ``ssbu.help`` for command help.",
+    "discord.error.exception": "An error has occurred. SSBUBot's owners have been notified.",
+    "discord.error.unknown": "An unknown error has occurred."
+}
