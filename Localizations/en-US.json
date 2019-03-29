@@ -1,10 +1,13 @@
 {
+    "discord.guild.join": "Thank you for adding SSBUBot to your server! Please have someone with the \"Manage Server\" permission follow the setup instructions at [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup).\n\nIf you have received this message more than once, this is because you have not run the ``ssbu.register`` command in this server. This is a reminder to do so.",
+    "discord.guild.deregister": "Your server cannot receive Smash notifications because SSBUBot cannot send messages to the registered channel. Please check that the channel exists and that SSBUBot has permissions to send messages to it. Someone with the \"Manage Server\" permission must run the ``ssbu.register`` command again to re-register this server once the issue has been resolved. Go to [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup) for more information.",
     "discord.error": "Error",
     "discord.error.type": "Type",
     "discord.error.message": "Message",
     "discord.error.unknown_command": "Unknown command. For a list of commands, see ``ssbu.help``.",
     "discord.error.bad_arguments": "Not enough arguments. See ``ssbu.help`` for command help.",
     "discord.error.exception": "An error has occurred. SSBUBot's owners have been notified.",
+    "discord.error.bad_code": "This language code is invalid. You can see a list of valid language codes by running ``ssbu.languages``.",
     "discord.error.unknown": "An unknown error has occurred.",
     "event.description": "[Click here for more information]({0}).",
     "event.start_time": "Start Time",
