@@ -22,6 +22,7 @@ using BcatBotFramework.Core.Config.Twitter;
 using SmashBcatDetector.Core.Config;
 using SmashBcatDetector.Difference;
 using BcatBotFramework.Social.Twitter;
+using BcatBotFramework.Internationalization;
 
 namespace SmashBcatDetector
 {
@@ -114,6 +115,9 @@ namespace SmashBcatDetector
 
             // Load the Configuration
             Configuration.Load<SsbuBotConfiguration>(LOCAL_CONFIGURATION);
+
+            // Initialize the Localizer
+            Localizer.Initialize();
 
             // Initialize the ContainerCache
             ContainerCache.Initialize(LOCAL_CONTAINER_CACHE_DIRECTORY);
