@@ -57,11 +57,17 @@ namespace SmashBcatDetector.Scheduler.Job
             // Check if this is the production bot
             if (Configuration.LoadedConfiguration.IsProduction)
             {
+                // Schedule regular BCAT checks
+                await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Bcat"]);
+
                 await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling immediate BCAT check");
 
                 // Schedule a BCAT check now
                 await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
             }
+            
+            // Schedule the recurring housekeeping job
+            await QuartzScheduler.ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Housekeeping"]);
         }
 
     }
