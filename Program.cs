@@ -162,7 +162,7 @@ namespace SmashBcatDetector
             await DiscordBot.LoggingChannel.SendMessageAsync("\\*\\*\\* **Initialized**");
 
             // Schedule the BootHousekeepingJob
-            await QuartzScheduler.ScheduleJob<BootHousekeepingJob>("Immediate");
+            await QuartzScheduler.ScheduleJob<SsbuBotBootHousekeepingJob>("Immediate");
             
             await Task.Delay(-1);
 
