@@ -104,7 +104,7 @@ namespace SmashBcatDetector.Social.Discord.Command
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, scheduling immediate shutdown");
 
-            await QuartzScheduler.ScheduleJob<ShutdownJob>("Immediate");
+            await QuartzScheduler.ScheduleJob<SsbuBotShutdownJob>("Immediate");
         }
         
     }
