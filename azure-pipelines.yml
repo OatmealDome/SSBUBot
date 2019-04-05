@@ -15,7 +15,7 @@ variables:
 steps:
 - script: sudo apt-get install git-crypt
   displayName: 'apt-get install git-crypt'
-- script: wget ${keyLocation}
+- script: wget $(keyLocation)
   displayName: 'download BcatBotFramework key'
 - script: cd ./BcatBotFramework && git-crypt unlock ../BcatBotFramework.key && cd ..
   displayName: 'unlock BcatBotFramework'
