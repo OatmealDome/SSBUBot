@@ -13,5 +13,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: sudo apt-get install git-crypt
+  displayName: 'apt-get install git-crypt'
+- script: wget ${keyLocation}
+  displayName: 'download BcatBotFramework key'
+- script: cd ./BcatBotFramework && git-crypt unlock ../BcatBotFramework.key && cd ..
+  displayName: 'unlock BcatBotFramework'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
