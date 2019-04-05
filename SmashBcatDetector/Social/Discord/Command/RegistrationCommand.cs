@@ -14,7 +14,6 @@ namespace SmashBcatDetector.Social.Discord.Command
 {
     public class RegistrationCommand : ModuleBase<SocketCommandContext>
     {
-        [RequireUserPermission(GuildPermission.ManageGuild)]
         [Command("Register"), Summary("Registers your server for notifications")]
         public async Task Register(IGuildChannel channel, string languageCode)
         {
@@ -23,10 +22,16 @@ namespace SmashBcatDetector.Social.Discord.Command
                 throw new LocalizedException("registration.in_dm");
             }
 
+            // Check that that the user has the manage guild permission
+            if (!((SocketGuildUser)Context.User).GuildPermissions.Has(GuildPermission.ManageGuild))
+            {
+                throw new LocalizedException("registration.user_no_manage_permission");
+            }
+
             // Check that we can write to this channel first
             if (!Context.Guild.CurrentUser.GetPermissions(channel).Has(ChannelPermission.SendMessages))
             {
-                throw new LocalizedException("registration.no_permissions");
+                throw new LocalizedException("registration.bot_no_write_permission");
             }
 
             // Check the language code
