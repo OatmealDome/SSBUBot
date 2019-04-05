@@ -33,7 +33,7 @@
     "list.description": "Here are the valid IDs:\n",
     "list.unknown_file_type": "Unknown file type.",
     "registration.title": "Success",
-    "registration.description": "Your server has been registered.",
+    "registration.description": "Your server has been registered. When Nintendo uploads new data, a message will be sent in that channel.",
     "registration.in_dm": "This command must be run in a server.",
     "registration.user_no_manage_permission": "You must have the \"Manage Server\" permission to register this server.",
     "registration.bot_no_write_permission": "SSBUBot does not have permission to send messages to that channel.",
