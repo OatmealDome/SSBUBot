@@ -36,7 +36,7 @@
     "registration.description": "Your server has been registered.",
     "registration.in_dm": "This command must be run in a server.",
     "registration.user_no_manage_permission": "You must have the \"Manage Server\" permission to register this server.",
-    "registration.bot_no_write_permission": "SSBUBot does not have permission to send messages to the specified channel.",
+    "registration.bot_no_write_permission": "SSBUBot does not have permission to send messages to that channel.",
     "registration.bad_code": "The language code is invalid. Please check the [setup guide](https://smash.oatmealdome.me/setup) or run ``ssbu.languages`` for valid codes.",
     "support.title": "Support",
     "support.description": "If you need a list of commands, type ``ssbu.help``. If you need help with using or setting up the bot, please join OatmealDome's server: https://discord.gg/rdx6Bt8"
