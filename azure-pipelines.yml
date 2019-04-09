@@ -21,3 +21,8 @@ steps:
   displayName: 'unlock BcatBotFramework'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'SSBUBot'
+    targetPath: ' $(Build.ArtifactStagingDirectory)'
+  displayName: 'Publish SSBUBot binary'
