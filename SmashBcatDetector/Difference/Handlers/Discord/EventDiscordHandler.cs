@@ -20,7 +20,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(Event addedEvent)
         {
             // Localize the embed description
-            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("event.more_info", Nintendo.SmashUltimate.Bcat.Container.LanguageOrder);
+            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("event.description", Nintendo.SmashUltimate.Bcat.Container.LanguageOrder);
 
             // Create a new Dictionary for localized descriptions with the URL
             Dictionary<Language, string> localizedDescriptionsWithUrl = new Dictionary<Language, string>();
