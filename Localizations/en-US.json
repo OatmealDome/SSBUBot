@@ -40,5 +40,11 @@
     "registration.bot_no_write_permission": "SSBUBot does not have permission to send messages to that channel.",
     "registration.bad_code": "The language code is invalid. Please check the [setup guide](https://smash.oatmealdome.me/setup) or run ``ssbu.languages`` for valid codes.",
     "support.title": "Support",
-    "support.description": "If you need a list of commands, type ``ssbu.help``. If you need help with using or setting up the bot, please join OatmealDome's server: https://discord.gg/rdx6Bt8"
+    "support.description": "If you need a list of commands, type ``ssbu.help``. If you need help with using or setting up the bot, please join OatmealDome's server: https://discord.gg/rdx6Bt8",
+    "twitter.event.header": "[Event]",
+    "twitter.event.url": "Click here for more information: {0}",
+    "twitter.popupnews.header": "[Pop-up News]",
+    "twitter.popupnews.url": "Click here for more information: {0}",
+    "twitter.present.header": "[Present]",
+    "twitter.present.url": "Click here for more information: {0}"
 }

@@ -21,12 +21,10 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
             }
             
             // Get the tweet header
-            string tweetHeaderKey = "[Pop-up News]";
-            string tweetHeader = Localizer.Localize(tweetHeaderKey, Language.EnglishUS);
+            string tweetHeader = Localizer.Localize("twitter.popupnews.header", Language.EnglishUS);
 
             // Get the tweet URL component
-            string tweetUrlKey = "Click here for more information: {0}";
-            string tweetUrl = string.Format(Localizer.Localize(tweetUrlKey, Language.EnglishUS), $"https://smash.oatmealdome.me/popup_news/{popUpNews.Id}/en-US/");
+            string tweetUrl = string.Format(Localizer.Localize("twitter.popupnews.url", Language.EnglishUS), $"https://smash.oatmealdome.me/popup_news/{popUpNews.Id}/en-US/");
 
             // Send the tweet
             TwitterManager.GetAccount("SSBUBot").Tweet(tweetHeader, popUpNews.TitleText[Language.EnglishUS], tweetUrl, popUpNews.Image);

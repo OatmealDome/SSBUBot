@@ -13,6 +13,8 @@ using SmashBcatDetector.Scheduler.Job;
 using BcatBotFramework.Social.Discord.Interactive;
 using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Social.Twitter;
+using SmashBcatDetector.Difference.Handlers.Twitter;
+using System.Linq;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -38,7 +40,10 @@ namespace SmashBcatDetector.Social.Discord.Command
             //RecurringHousekeepingJob job = new RecurringHousekeepingJob();
             //await job.Execute(null);
 
-            TwitterManager.GetAccount("SSBUBot").Tweet("[Test]", "test tweet from debug command", "URL: https://google.com");
+            //TwitterManager.GetAccount("SSBUBot").Tweet("[Test]", "test tweet from debug command", "URL: https://google.com");
+            
+            PopUpNewsTwitterHandler.HandleAdded(ContainerCache.GetPopUpNews().Last());
+            PresentTwitterHandler.HandleAdded(ContainerCache.GetPresents().Last());
         }
 
         private static string ToJson(Nintendo.SmashUltimate.Bcat.Container container)

@@ -12,12 +12,10 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
         public static void HandleAdded(Event addedEvent)
         {
             // Get the tweet header
-            string tweetHeaderKey = "[Event]";
-            string tweetHeader = Localizer.Localize(tweetHeaderKey, Language.EnglishUS);
+            string tweetHeader = Localizer.Localize("twitter.event.header", Language.EnglishUS);
 
             // Get the tweet URL component
-            string tweetUrlKey = "Click here for more information: {0}";
-            string tweetUrl = string.Format(Localizer.Localize(tweetUrlKey, Language.EnglishUS), $"https://smash.oatmealdome.me/event/{addedEvent.Id}/en-US/");
+            string tweetUrl = string.Format(Localizer.Localize("twitter.event.url", Language.EnglishUS), $"https://smash.oatmealdome.me/event/{addedEvent.Id}/en-US/");
 
             // Send the tweet
             TwitterHandler.Tweet(tweetHeader, addedEvent.TitleText[Language.EnglishUS], tweetUrl, addedEvent.Image);
