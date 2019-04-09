@@ -21,7 +21,7 @@ namespace SmashBcatDetector.Social.Discord.Command
         public async Task Execute(string id = null, string languageString = null)
         {
             // Get the language
-            Language language = DiscordUtil.GetDefaultLanguage(Context, languageString);
+            Language language = DiscordUtil.GetDefaultLanguage(Context.Guild, languageString);
 
             // Check for no ID
             if (id == null)

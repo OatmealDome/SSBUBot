@@ -17,7 +17,7 @@ namespace SmashBcatDetector.Social.Discord.Command
         public async Task Execute(string containerType, string specifiedLanguage = null)
         {
             // Get the language
-            Language language = DiscordUtil.GetDefaultLanguage(Context, specifiedLanguage);
+            Language language = DiscordUtil.GetDefaultLanguage(Context.Guild, specifiedLanguage);
 
             // Get the FileType
             FileType fileType;

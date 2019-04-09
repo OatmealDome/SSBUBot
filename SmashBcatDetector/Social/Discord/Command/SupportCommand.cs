@@ -13,7 +13,7 @@ namespace SmashBcatDetector.Social.Discord.Command
         public async Task Support()
         {
             // Get the language
-            Language language = DiscordUtil.GetDefaultLanguage(Context, null);
+            Language language = DiscordUtil.GetDefaultLanguage(Context.Guild, null);
             
             Embed embed = new EmbedBuilder()
                 .WithTitle(Localizer.Localize("support.title", language))
