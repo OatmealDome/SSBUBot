@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using BcatBotFramework.Core.Config;
 using BcatBotFramework.Scheduler;
@@ -14,6 +15,13 @@ namespace SmashBcatDetector.Scheduler.Job
     {
         protected override async Task RunAppSpecificBootTasks()
         {
+            // Create the cache directories if needed
+            Directory.CreateDirectory(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
+            Directory.CreateDirectory(Program.LOCAL_COMMON_CACHE_DIRECTORY);
+            
+            // Initialize the ContainerCache
+            ContainerCache.Initialize(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
+
             await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling archivals");
 
             // Archive all Container pages in production mode
