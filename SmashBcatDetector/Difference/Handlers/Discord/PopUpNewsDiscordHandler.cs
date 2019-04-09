@@ -35,8 +35,8 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
             Dictionary<Language, Embed> localizedEmbeds = new LocalizedEmbedBuilder()
                 .WithTitle(popUpNews.TitleText)
                 .WithDescription(localizedDescriptionsWithUrl)
-                .AddField("poup_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.StartDateTime))
-                .AddField("poup_news.end_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.EndDateTime))
+                .AddField("popup_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.StartDateTime))
+                .AddField("popup_news.end_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.EndDateTime))
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/popup_news/{popUpNews.Id}/image.jpg")
                 .Build();
             
