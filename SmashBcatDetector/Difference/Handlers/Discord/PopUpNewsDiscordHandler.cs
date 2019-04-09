@@ -19,7 +19,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(PopUpNews popUpNews)
         {
             // Localize the embed description
-            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("popup_news.description");
+            Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("popup_news.description", Nintendo.SmashUltimate.Bcat.Container.LanguageOrder);
 
             // Create a new Dictionary for localized descriptions with the URL
             Dictionary<Language, string> localizedDescriptionsWithUrl = new Dictionary<Language, string>();
@@ -32,7 +32,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
             }
 
             // Create localized Embeds
-            Dictionary<Language, Embed> localizedEmbeds = new LocalizedEmbedBuilder()
+            Dictionary<Language, Embed> localizedEmbeds = new LocalizedEmbedBuilder(Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
                 .WithTitle(popUpNews.TitleText)
                 .WithDescription(localizedDescriptionsWithUrl)
                 .AddField("popup_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(popUpNews.StartDateTime))

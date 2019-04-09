@@ -20,13 +20,13 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
         public static async Task HandleAdded(LineNews lineNews)
         {
             // Localize the embed title
-            Dictionary<Language, string> localizedTitles = Localizer.LocalizeToAllLanguagesWithFormat("line_news.title", lineNews.Id);
+            Dictionary<Language, string> localizedTitles = Localizer.LocalizeToAllLanguagesWithFormat("line_news.title", Nintendo.SmashUltimate.Bcat.Container.LanguageOrder, lineNews.Id);
 
             // Localize the embed description
             // Dictionary<Language, string> localizedDescriptions = Localizer.LocalizeToAllLanguages("line_news.more_info", $"https://smash.oatmealdome.me/line_news/{lineNews.Id}/{pair.Key.GetCode()}/");
 
             // Create localized Embeds
-            LocalizedEmbedBuilder localizedEmbedBuilder = new LocalizedEmbedBuilder()
+            LocalizedEmbedBuilder localizedEmbedBuilder = new LocalizedEmbedBuilder(Nintendo.SmashUltimate.Bcat.Container.LanguageOrder)
                 .WithTitle(localizedTitles)
                 //.WithDescription(localizedDescriptions)
                 .AddField("line_news.start_time", Localizer.LocalizeDateTimeToAllLanguages(lineNews.StartDateTime))
