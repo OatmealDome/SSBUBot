@@ -11,6 +11,12 @@ namespace SmashBcatDetector.Core.Config
             get;
             set;
         }
-        
+
+        protected override void SetAppSpecificDefaults()
+        {
+            WebConfig = new WebConfig();
+            WebConfig.SetDefaults();
+        }
+
     }
 }
