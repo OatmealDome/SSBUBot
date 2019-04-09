@@ -70,6 +70,12 @@ namespace SmashBcatDetector.Social.Discord.Command
                 case FileType.PopUpNews:
                     foreach (PopUpNews news in ContainerCache.GetPopUpNews())
                     {
+                        // TODO: hack something better can be made, pages maybe?
+                        if (news.Id.Contains("_"))
+                        {
+                            continue;
+                        }
+                        
                         ids.Add($"``{news.Id}`` - {news.TitleText[language]}");
                     }
 
