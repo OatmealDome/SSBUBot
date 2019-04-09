@@ -18,7 +18,7 @@ namespace SmashBcatDetector.Difference.Handlers.Twitter
             string tweetUrl = string.Format(Localizer.Localize("twitter.event.url", Language.EnglishUS), $"https://smash.oatmealdome.me/event/{addedEvent.Id}/en-US/");
 
             // Send the tweet
-            TwitterHandler.Tweet(tweetHeader, addedEvent.TitleText[Language.EnglishUS], tweetUrl, addedEvent.Image);
+            TwitterManager.GetAccount("SSBUBot").Tweet(tweetHeader, addedEvent.TitleText[Language.EnglishUS], tweetUrl, addedEvent.Image);
         }*/
 
     }
