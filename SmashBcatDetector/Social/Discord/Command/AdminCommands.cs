@@ -16,6 +16,7 @@ using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Social.Discord.Precondition;
 using BcatBotFramework.Scheduler;
 using BcatBotFramework.Social.Discord;
+using SmashBcatDetector.Difference.Handlers.Discord;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -37,6 +38,31 @@ namespace SmashBcatDetector.Social.Discord.Command
             await DiscordBot.GetChannel(guildId, channelId).SendMessageAsync($"**[SSBUBot Administrator Message]**\n\n{announcement}");
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, announced");
+        }
+
+        [RequireBotAdministratorPrecondition]
+        [Command("notify"), Summary("Sends a notification about the specified container")]
+        public async Task AnnounceToChannel(string type, string id)
+        {
+            switch (type)
+            {
+                case "event":
+                    await EventDiscordHandler.HandleAdded(ContainerCache.GetEventWithId(id));
+                    break;
+                case "linenews":
+                    await LineNewsDiscordHandler.HandleAdded(ContainerCache.GetLineNewsWithId(id));
+                    break;
+                case "popupnews":
+                    await PopUpNewsDiscordHandler.HandleAdded(ContainerCache.GetPopUpNewsWithId(id));
+                    break;
+                case "present":
+                    await PresentDiscordHandler.HandleAdded(ContainerCache.GetPresentWithId(id));
+                    break;
+                default:
+                    throw new Exception("Invalid type (must be event, linenews, popupnews, or present)");
+            }
+
+            await Context.Channel.SendMessageAsync("**[Admin]** OK, notified");
         }
 
         [RequireBotAdministratorPrecondition]
