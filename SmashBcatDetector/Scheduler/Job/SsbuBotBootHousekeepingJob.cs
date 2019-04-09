@@ -73,9 +73,9 @@ namespace SmashBcatDetector.Scheduler.Job
                 // Schedule a BCAT check now
                 await QuartzScheduler.ScheduleJob<BcatCheckerJob>("Immediate");
             }
-            
+
             // Schedule the recurring housekeeping job
-            await QuartzScheduler.ScheduleJob<RecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Housekeeping"]);
+            await QuartzScheduler.ScheduleJob<SsbuBotRecurringHousekeepingJob>("Regular", Configuration.LoadedConfiguration.JobSchedules["Housekeeping"]);
         }
 
     }
