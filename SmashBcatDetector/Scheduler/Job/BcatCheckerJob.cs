@@ -29,7 +29,7 @@ namespace SmashBcatDetector.Scheduler.Job
                 await DiscordBot.LoggingChannel.SendMessageAsync("**[BCAT]** Beginning check");
 
                 // Download the latest Topic
-                Topic topic = await BcatApi.GetDataTopic(Program.TOPIC_ID, Program.TITLE_ID, Program.PASSPHRASE);
+                Topic topic = await BcatApi.GetDataTopic(Program.TITLE_ID, Program.PASSPHRASE);
 
                 // Create the target folder name
                 string targetFolder = string.Format(Program.LOCAL_OLD_DATA_DIRECTORY, DateTime.Now.ToString(Program.FOLDER_DATE_TIME_FORMAT));
