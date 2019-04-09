@@ -67,8 +67,8 @@ namespace Nintendo.SmashUltimate.Bcat
             Language.Dutch,
             Language.Italian,
             Language.Russian,
-            Language.Chinese,
-            Language.ChineseTaiwan,
+            Language.ChineseSimplified,
+            Language.ChineseTraditional,
             Language.Korean
         };
 
