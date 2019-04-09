@@ -36,7 +36,7 @@ namespace SmashBcatDetector.Difference.Handlers.Discord
                 .WithTitle(present.TitleText)
                 .WithDescription(localizedDescriptionsWithUrl)
                 .AddField("present.start_time", Localizer.LocalizeDateTimeToAllLanguages(present.StartDateTime))
-                .AddField("present.expiry_time", Localizer.LocalizeDateTimeToAllLanguages(present.EndDateTime))
+                .AddField("present.end_time", Localizer.LocalizeDateTimeToAllLanguages(present.EndDateTime))
                 .WithImageUrl($"https://cdn.oatmealdome.me/smash/present/{present.Id}/image.jpg")
                 .Build();
             
