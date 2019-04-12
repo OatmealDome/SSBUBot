@@ -1,4 +1,4 @@
-![](https://cdn.oatmealdome.me/image/SSBUBot-logo-dark-big.png)
+![](https://cdn.oatmealdome.me/image/SSBUBot-banner.png)
 
 SSBUBot is a scraper for Nintendo's BCAT servers, specifically targeting data for Super Smash Bros. Ultimate.
 
