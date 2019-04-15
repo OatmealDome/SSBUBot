@@ -2,9 +2,11 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using BcatBotFramework.Core.Config;
+using BcatBotFramework.Core.Config.Discord;
 using BcatBotFramework.Scheduler;
 using BcatBotFramework.Scheduler.Job;
 using BcatBotFramework.Social.Discord;
+using Nintendo.Bcat;
 using Nintendo.SmashUltimate.Bcat;
 using SmashBcatDetector.Core;
 using SmashBcatDetector.Difference.Handlers.Archival;
@@ -16,8 +18,8 @@ namespace SmashBcatDetector.Scheduler.Job
         protected override async Task RunAppSpecificBootTasks()
         {
             // Create the cache directories if needed
-            Directory.CreateDirectory(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
-            Directory.CreateDirectory(Program.LOCAL_COMMON_CACHE_DIRECTORY);
+            System.IO.Directory.CreateDirectory(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
+            System.IO.Directory.CreateDirectory(Program.LOCAL_COMMON_CACHE_DIRECTORY);
             
             // Initialize the ContainerCache
             ContainerCache.Initialize(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
