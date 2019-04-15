@@ -15,6 +15,12 @@ namespace SmashBcatDetector.Social.Discord.Command
     public class RegistrationCommand : ModuleBase<SocketCommandContext>
     {
         [Command("Register"), Summary("Registers your server for notifications")]
+        public async Task Register(string languageCode)
+        {
+            await Register(Context.Channel as IGuildChannel, languageCode);
+        }
+
+        [Command("Register"), Summary("Registers your server for notifications")]
         public async Task Register(IGuildChannel channel, string languageCode)
         {
             if (Context.Guild == null)
