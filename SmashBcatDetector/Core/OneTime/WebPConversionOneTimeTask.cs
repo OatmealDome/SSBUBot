@@ -45,7 +45,7 @@ namespace SmashBcatDetector.Core.OneTime
                     await DiscordBot.LoggingChannel.SendMessageAsync($"**[WebPConversionOneTimeTask]** Uploading image for {fileType.ToString()} ID {container.Id}");
                     
                     // Upload to S3
-                    S3Api.TransferFile(webpImage, s3Path, "image.webp");
+                    S3Api.TransferFile(webpImage, s3Path, "image.webp", "image/webp");
                 }
             }
         }

@@ -67,7 +67,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 byte[] image = (byte[])container.GetType().GetProperty("Image").GetValue(container);
 
                 // Write the image to S3
-                S3Api.TransferFile(image, s3Path, "image.jpg");
+                S3Api.TransferFile(image, s3Path, "image.jpg", "image/jpeg");
 
                 // Create a new MagickImage
                 using (MagickImage magickImage = new MagickImage(image))
@@ -79,7 +79,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                     byte[] webpImage = magickImage.ToByteArray();
                     
                     // Upload to S3
-                    S3Api.TransferFile(webpImage, s3Path, "image.webp");
+                    S3Api.TransferFile(webpImage, s3Path, "image.webp", "image/webp");
                 }
             }
 
