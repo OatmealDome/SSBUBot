@@ -11,6 +11,7 @@ using S3;
 using Nintendo.SmashUltimate.Bcat;
 using SmashBcatDetector.Core.Config;
 using BcatBotFramework.Difference;
+using ImageMagick;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {
@@ -67,6 +68,19 @@ namespace SmashBcatDetector.Difference.Handlers.Web
 
                 // Write the image to S3
                 S3Api.TransferFile(image, s3Path, "image.jpg");
+
+                // Create a new MagickImage
+                using (MagickImage magickImage = new MagickImage(image))
+                {
+                    // Set the output format to WebP
+                    magickImage.Format = MagickFormat.WebP;
+
+                    // Create the raw WebP
+                    byte[] webpImage = magickImage.ToByteArray();
+                    
+                    // Upload to S3
+                    S3Api.TransferFile(webpImage, s3Path, "image.webp");
+                }
             }
 
             // Convert the Container to a StrippedContainer
