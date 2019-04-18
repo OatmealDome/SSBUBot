@@ -49,6 +49,7 @@ namespace SmashBcatDetector.Core
             {
                 // Create the SftpClient
                 SftpClient = new SftpClient(webConfig.RemoteServer.Address, webConfig.RemoteServer.Username, new PrivateKeyFile(webConfig.RemoteServer.PrivateKey));
+                SftpClient.Connect();
             }
         }
 
@@ -56,6 +57,7 @@ namespace SmashBcatDetector.Core
         {
             if (SftpClient != null)
             {
+                SftpClient.Disconnect();
                 SftpClient.Dispose();
                 SftpClient = null;
             }
