@@ -17,6 +17,11 @@ using BcatBotFramework.Social.Discord.Precondition;
 using BcatBotFramework.Scheduler;
 using BcatBotFramework.Social.Discord;
 using SmashBcatDetector.Difference.Handlers.Discord;
+using SmashBcatDetector.S3;
+using Tweetinvi.Core.Extensions;
+using SmashBcatDetector.Core.Config;
+using Renci.SshNet;
+using System.Linq;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -113,6 +118,89 @@ namespace SmashBcatDetector.Social.Discord.Command
                 await Context.Channel.SendMessageAsync("**[Admin]** Uploading " + container.GetType().Name + " with ID " + container.Id);
 
                 ContainerWebHandler.HandleContainer(container);
+            }
+
+            await Context.Channel.SendMessageAsync("**[Admin]** Done");
+        }
+
+        [RequireBotAdministratorPrecondition]
+        [Command("rebuildlist"), Summary("Rebuilds the specified list")]
+        public async Task RebuildList(string type)
+        {
+            await Context.Channel.SendMessageAsync("**[Admin]** OK, building list");
+
+            // Create a new StrippedContainer list
+            List<StrippedContainer> containerList = new List<StrippedContainer>();
+
+            // Declare a variable to hold the path
+            string indexPath = ((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerListPath;
+
+            switch (type)
+            {
+                case "event":
+                    ContainerCache.GetEvents().ForEach(x => containerList.Add(StrippedContainer.ConvertToStrippedContainer(x)));
+                    indexPath = string.Format(indexPath, "event");
+
+                    break;
+                case "linenews":
+                    ContainerCache.GetLineNews().ForEach(x => containerList.Add(StrippedContainer.ConvertToStrippedContainer(x)));
+                    indexPath = string.Format(indexPath, "line_news");
+
+                    break;
+                case "popupnews":
+                    ContainerCache.GetPopUpNews().ForEach(x => containerList.Add(StrippedContainer.ConvertToStrippedContainer(x)));
+                    indexPath = string.Format(indexPath, "popup_news");
+
+                    break;
+                case "present":
+                    ContainerCache.GetPresents().ForEach(x => containerList.Add(StrippedContainer.ConvertToStrippedContainer(x)));
+                    indexPath = string.Format(indexPath, "present");
+
+                    break;
+                default:
+                    throw new Exception("Invalid type (must be event, linenews, popupnews, or present)");
+            }
+
+            // Acquire the WebFileHandler lock
+            lock (WebFileHandler.Lock)
+            {
+                // Connect
+                WebFileHandler.Connect();
+
+                // Upload the file
+                WebFileHandler.WriteAllText(indexPath, WebFileHandler.ToJson(containerList));
+            
+                // Disconnect
+                WebFileHandler.Disconnect();
+            }
+
+            await Context.Channel.SendMessageAsync("**[Admin]** Done");
+        }
+
+        [RequireBotAdministratorPrecondition]
+        [Command("rebuildindex"), Summary("Rebuilds the index")]
+        public async Task RebuildIndex()
+        {
+            await Context.Channel.SendMessageAsync("**[Admin]** OK, building index");
+
+            // Create a dummy ContainerIndex using latest data
+            ContainerIndex containerIndex = new ContainerIndex();
+            containerIndex.Event = StrippedContainer.ConvertToStrippedContainer(ContainerCache.GetEvents().First());
+            containerIndex.LineNews = StrippedContainer.ConvertToStrippedContainer(ContainerCache.GetLineNews().First());
+            containerIndex.PopUpNews = StrippedContainer.ConvertToStrippedContainer(ContainerCache.GetPopUpNews().First());
+            containerIndex.Present = StrippedContainer.ConvertToStrippedContainer(ContainerCache.GetPresents().First());
+
+            // Acquire the WebFileHandler lock
+            lock (WebFileHandler.Lock)
+            {
+                // Connect
+                WebFileHandler.Connect();
+
+                // Write the file
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, WebFileHandler.ToJson(containerIndex));
+            
+                // Disconnect
+                WebFileHandler.Disconnect();
             }
 
             await Context.Channel.SendMessageAsync("**[Admin]** Done");
