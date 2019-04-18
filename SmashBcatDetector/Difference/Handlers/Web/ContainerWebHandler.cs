@@ -174,12 +174,12 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             HandleContainer(newContainer);
         }
 
-        private static string ToJson(object obj)
+        public static string ToJson(object obj)
         {
             return JsonConvert.SerializeObject(obj, SerializerSettings);
         }
 
-        private static T FromJson<T>(string text)
+        public static T FromJson<T>(string text)
         {
             return JsonConvert.DeserializeObject<T>(text, DeserializerSettings);
         }
