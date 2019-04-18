@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.IO;
 using BcatBotFramework.Core.Config;
+using Newtonsoft.Json;
 using Renci.SshNet;
 using SmashBcatDetector.Core.Config;
+using SmashBcatDetector.Json;
 
 namespace SmashBcatDetector.Core
 {
@@ -10,6 +13,31 @@ namespace SmashBcatDetector.Core
         public static object Lock = new object();
 
         private static SftpClient SftpClient = null;
+
+        private static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings()
+        {
+            ContractResolver = new ShouldSerializeContractResolver(),
+            Converters = new List<JsonConverter>
+            {
+                new LanguageMappingDictionaryConverter(),
+                new StringZeroByteTrimmerConverter()
+            },
+#if DEBUG
+            Formatting = Newtonsoft.Json.Formatting.Indented
+#endif
+        };
+
+        private static JsonSerializerSettings DeserializerSettings = new JsonSerializerSettings()
+        {
+            ContractResolver = new ShouldSerializeContractResolver(),
+            Converters = new List<JsonConverter>
+            {
+                new LanguageMappingDictionaryConverter(),
+            },
+#if DEBUG
+            Formatting = Newtonsoft.Json.Formatting.Indented
+#endif
+        };
 
         public static void Connect()
         {
@@ -76,6 +104,16 @@ namespace SmashBcatDetector.Core
                 // Write to the server
                 SftpClient.WriteAllText(path, text);
             }
+        }
+
+        public static string ToJson(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, SerializerSettings);
+        }
+
+        public static T FromJson<T>(string text)
+        {
+            return JsonConvert.DeserializeObject<T>(text, DeserializerSettings);
         }
 
     }

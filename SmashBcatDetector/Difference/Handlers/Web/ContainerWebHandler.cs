@@ -19,31 +19,6 @@ namespace SmashBcatDetector.Difference.Handlers.Web
 {
     public class ContainerWebHandler
     {
-        private static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings()
-        {
-            ContractResolver = new ShouldSerializeContractResolver(),
-            Converters = new List<JsonConverter>
-            {
-                new LanguageMappingDictionaryConverter(),
-                new StringZeroByteTrimmerConverter()
-            },
-#if DEBUG
-            Formatting = Newtonsoft.Json.Formatting.Indented
-#endif
-        };
-
-        private static JsonSerializerSettings DeserializerSettings = new JsonSerializerSettings()
-        {
-            ContractResolver = new ShouldSerializeContractResolver(),
-            Converters = new List<JsonConverter>
-            {
-                new LanguageMappingDictionaryConverter(),
-            },
-#if DEBUG
-            Formatting = Newtonsoft.Json.Formatting.Indented
-#endif
-        };
-
         [SsbuBotDifferenceHandler(FileType.Event, DifferenceType.Added, 1)]
         [SsbuBotDifferenceHandler(FileType.LineNews, DifferenceType.Added, 1)]
         [SsbuBotDifferenceHandler(FileType.PopUpNews, DifferenceType.Added, 1)]
@@ -57,7 +32,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             string s3Path = $"/smash/{FileTypeExtensions.GetNamePrefixFromType(fileType)}/{container.Id}";
 
             // Convert the Container into a JSON string
-            byte[] json = Encoding.UTF8.GetBytes(ToJson(container));
+            byte[] json = Encoding.UTF8.GetBytes(WebFileHandler.ToJson(container));
 
             // Write the data to S3
             S3Api.TransferFile(json, s3Path, "data.json");
@@ -104,7 +79,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 if (WebFileHandler.Exists(indexPath))
                 {
                     // Deserialize the List
-                    containerList = FromJson<List<StrippedContainer>>(WebFileHandler.ReadAllText(indexPath));
+                    containerList = WebFileHandler.FromJson<List<StrippedContainer>>(WebFileHandler.ReadAllText(indexPath));
                 }
                 else
                 {
@@ -128,7 +103,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 }
                 
                 // Serialize and write the container list
-                WebFileHandler.WriteAllText(indexPath, ToJson(containerList));
+                WebFileHandler.WriteAllText(indexPath, WebFileHandler.ToJson(containerList));
 
                 // Declare a variable to hold the ContainerIndex
                 ContainerIndex containerIndex;
@@ -151,7 +126,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 else
                 {
                     // Read the file
-                    containerIndex = FromJson<ContainerIndex>(WebFileHandler.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
+                    containerIndex = WebFileHandler.FromJson<ContainerIndex>(WebFileHandler.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
                 }
 
                 // Get the correct property
@@ -161,7 +136,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 propertyInfo.SetValue(containerIndex, strippedContainer);
 
                 // Write out the ContainerIndex
-                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, WebFileHandler.ToJson(containerIndex));
             
                 // Disconnect from the remote server
                 WebFileHandler.Disconnect();
@@ -175,16 +150,6 @@ namespace SmashBcatDetector.Difference.Handlers.Web
         public static void HandleChangedContainer(Container previousContainer, Container newContainer)
         {
             HandleContainer(newContainer);
-        }
-
-        public static string ToJson(object obj)
-        {
-            return JsonConvert.SerializeObject(obj, SerializerSettings);
-        }
-
-        public static T FromJson<T>(string text)
-        {
-            return JsonConvert.DeserializeObject<T>(text, DeserializerSettings);
         }
 
     }
