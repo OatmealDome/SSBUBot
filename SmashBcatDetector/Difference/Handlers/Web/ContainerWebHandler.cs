@@ -85,83 +85,87 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 }
             }
 
-            // Connect to the remote server if needed
-            WebFileHandler.Connect();
-
-            // Convert the Container to a StrippedContainer
-            StrippedContainer strippedContainer = StrippedContainer.ConvertToStrippedContainer(container);
-
-            // Declare a variable to hold the container list
-            List<StrippedContainer> containerList;
-
-            // Format the container list path
-            string indexPath = string.Format(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerListPath, FileTypeExtensions.GetNamePrefixFromType(fileType));
-
-            // Check if the file exists
-            if (WebFileHandler.Exists(indexPath))
+            lock (WebFileHandler.Lock)
             {
-                // Deserialize the List
-                containerList = FromJson<List<StrippedContainer>>(WebFileHandler.ReadAllText(indexPath));
-            }
-            else
-            {
-                // Create a new List
-                containerList = new List<StrippedContainer>();
-            }
 
-            // Check if the Container already exists in the list
-            int index = containerList.FindIndex(x => x.Id == container.Id);
+                // Connect to the remote server if needed
+                WebFileHandler.Connect();
 
-            // Check the index
-            if (index == -1)
-            {
-                // Add the StrippedContainer to the List
-                containerList.Add(strippedContainer);
-            }
-            else
-            {
-                // Replace the item at the index
-                containerList[index] = strippedContainer;
-            }
+                // Convert the Container to a StrippedContainer
+                StrippedContainer strippedContainer = StrippedContainer.ConvertToStrippedContainer(container);
+
+                // Declare a variable to hold the container list
+                List<StrippedContainer> containerList;
+
+                // Format the container list path
+                string indexPath = string.Format(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerListPath, FileTypeExtensions.GetNamePrefixFromType(fileType));
+
+                // Check if the file exists
+                if (WebFileHandler.Exists(indexPath))
+                {
+                    // Deserialize the List
+                    containerList = FromJson<List<StrippedContainer>>(WebFileHandler.ReadAllText(indexPath));
+                }
+                else
+                {
+                    // Create a new List
+                    containerList = new List<StrippedContainer>();
+                }
+
+                // Check if the Container already exists in the list
+                int index = containerList.FindIndex(x => x.Id == container.Id);
+
+                // Check the index
+                if (index == -1)
+                {
+                    // Add the StrippedContainer to the List
+                    containerList.Add(strippedContainer);
+                }
+                else
+                {
+                    // Replace the item at the index
+                    containerList[index] = strippedContainer;
+                }
+                
+                // Serialize and write the container list
+                WebFileHandler.WriteAllText(indexPath, ToJson(containerList));
+
+                // Declare a variable to hold the ContainerIndex
+                ContainerIndex containerIndex;
+                
+                // Check if the ContainerIndex exists
+                if (WebFileHandler.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
+                {
+                    // Create a dummy StrippedContainer
+                    StrippedContainer dummyStrippedContainer = new StrippedContainer();
+                    dummyStrippedContainer.Id = "-1";
+                    dummyStrippedContainer.Text = new Dictionary<Nintendo.Bcat.Language, string>();
+
+                    // Create a dummy ContainerIndex
+                    containerIndex = new ContainerIndex();
+                    containerIndex.Event = dummyStrippedContainer;
+                    containerIndex.LineNews = dummyStrippedContainer;
+                    containerIndex.PopUpNews = dummyStrippedContainer;
+                    containerIndex.Present = dummyStrippedContainer;
+                }
+                else
+                {
+                    // Read the file
+                    containerIndex = FromJson<ContainerIndex>(WebFileHandler.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
+                }
+
+                // Get the correct property
+                PropertyInfo propertyInfo = containerIndex.GetType().GetProperty(container.GetType().Name);
+
+                // Set the value
+                propertyInfo.SetValue(containerIndex, strippedContainer);
+
+                // Write out the ContainerIndex
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
             
-            // Serialize and write the container list
-            WebFileHandler.WriteAllText(indexPath, ToJson(containerList));
-
-            // Declare a variable to hold the ContainerIndex
-            ContainerIndex containerIndex;
-            
-            // Check if the ContainerIndex exists
-            if (WebFileHandler.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
-            {
-                // Create a dummy StrippedContainer
-                StrippedContainer dummyStrippedContainer = new StrippedContainer();
-                dummyStrippedContainer.Id = "-1";
-                dummyStrippedContainer.Text = new Dictionary<Nintendo.Bcat.Language, string>();
-
-                // Create a dummy ContainerIndex
-                containerIndex = new ContainerIndex();
-                containerIndex.Event = dummyStrippedContainer;
-                containerIndex.LineNews = dummyStrippedContainer;
-                containerIndex.PopUpNews = dummyStrippedContainer;
-                containerIndex.Present = dummyStrippedContainer;
+                // Disconnect from the remote server
+                WebFileHandler.Disconnect();
             }
-            else
-            {
-                // Read the file
-                containerIndex = FromJson<ContainerIndex>(WebFileHandler.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
-            }
-
-            // Get the correct property
-            PropertyInfo propertyInfo = containerIndex.GetType().GetProperty(container.GetType().Name);
-
-            // Set the value
-            propertyInfo.SetValue(containerIndex, strippedContainer);
-
-            // Write out the ContainerIndex
-            WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
-        
-            // Disconnect from the remote server
-            WebFileHandler.Disconnect();
         }
 
         [SsbuBotDifferenceHandler(FileType.Event, DifferenceType.Changed, 1)]
