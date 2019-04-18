@@ -78,33 +78,42 @@ namespace SmashBcatDetector.Core
             }
         }
 
-        public static string ReadAllText(string path)
+        public static T ReadAllText<T>(string path)
         {
+            // Declare a variable to hold the JSON
+            string json;
+
             // Check if a remote connection isn't open
             if (SftpClient == null)
             {
                 // Read from the local path
-                return File.ReadAllText(path);
+                json = File.ReadAllText(path);
             }
             else
             {
                 // Read from the server
-                return SftpClient.ReadAllText(path);
+                json = SftpClient.ReadAllText(path);
             }
+
+            // Deserialize the object
+            return FromJson<T>(json);
         }
 
-        public static void WriteAllText(string path, string text)
+        public static void WriteAllText(string path, object obj)
         {
+            // Serialize the object
+            string json = ToJson(obj);
+
             // Check if a remote connection isn't open
             if (SftpClient == null)
             {
                 // Write the file to the local path
-                File.WriteAllText(path, text);
+                File.WriteAllText(path, json);
             }
             else
             {
                 // Write to the server
-                SftpClient.WriteAllText(path, text);
+                SftpClient.WriteAllText(path, json);
             }
         }
 

@@ -79,7 +79,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 if (WebFileHandler.Exists(indexPath))
                 {
                     // Deserialize the List
-                    containerList = WebFileHandler.FromJson<List<StrippedContainer>>(WebFileHandler.ReadAllText(indexPath));
+                    containerList = WebFileHandler.ReadAllText<List<StrippedContainer>>(indexPath);
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 }
                 
                 // Serialize and write the container list
-                WebFileHandler.WriteAllText(indexPath, WebFileHandler.ToJson(containerList));
+                WebFileHandler.WriteAllText(indexPath, containerList);
 
                 // Declare a variable to hold the ContainerIndex
                 ContainerIndex containerIndex;
@@ -126,7 +126,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 else
                 {
                     // Read the file
-                    containerIndex = WebFileHandler.FromJson<ContainerIndex>(WebFileHandler.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
+                    containerIndex = WebFileHandler.ReadAllText<ContainerIndex>(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath);
                 }
 
                 // Get the correct property
@@ -136,7 +136,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 propertyInfo.SetValue(containerIndex, strippedContainer);
 
                 // Write out the ContainerIndex
-                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, WebFileHandler.ToJson(containerIndex));
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, containerIndex);
             
                 // Disconnect from the remote server
                 WebFileHandler.Disconnect();
