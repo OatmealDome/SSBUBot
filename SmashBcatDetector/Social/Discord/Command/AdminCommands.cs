@@ -168,7 +168,7 @@ namespace SmashBcatDetector.Social.Discord.Command
                 WebFileHandler.Connect();
 
                 // Upload the file
-                WebFileHandler.WriteAllText(indexPath, WebFileHandler.ToJson(containerList));
+                WebFileHandler.WriteAllText(indexPath, containerList);
             
                 // Disconnect
                 WebFileHandler.Disconnect();
@@ -197,7 +197,7 @@ namespace SmashBcatDetector.Social.Discord.Command
                 WebFileHandler.Connect();
 
                 // Write the file
-                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, WebFileHandler.ToJson(containerIndex));
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, containerIndex);
             
                 // Disconnect
                 WebFileHandler.Disconnect();
