@@ -1,5 +1,5 @@
 {
-    "discord.guild.join": "Thank you for adding SSBUBot to your server! Please have someone with the \"Manage Server\" permission follow the setup instructions at [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup).\n\nIf you have received this message more than once, this is because you have not run the ``ssbu.register`` command in this server. This is a reminder to do so.",
+    "discord.guild.join": "Thank you for adding SSBUBot to your server! Please have someone with the \"Manage Server\" permission follow the setup instructions at [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup). **You must run the ``ssbu.register`` command or you will not receive Smash notifications.**",
     "discord.guild.deregister": "Your server cannot receive Smash notifications because SSBUBot cannot send messages to the registered channel. Please check that the channel exists and that SSBUBot has permissions to send messages to it. Someone with the \"Manage Server\" permission must run the ``ssbu.register`` command again to re-register this server once the issue has been resolved. Go to [https://smash.oatmealdome.me/setup](https://smash.oatmealdome.me/setup) for more information.",
     "discord.error": "Error",
     "discord.error.type": "Type",
