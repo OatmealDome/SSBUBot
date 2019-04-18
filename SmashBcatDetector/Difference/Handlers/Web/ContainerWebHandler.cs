@@ -12,11 +12,14 @@ using Nintendo.SmashUltimate.Bcat;
 using SmashBcatDetector.Core.Config;
 using BcatBotFramework.Difference;
 using ImageMagick;
+using Renci.SshNet;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {
     public class ContainerWebHandler
     {
+        private static SftpClient SftpClient = null;
+
         private static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings()
         {
             ContractResolver = new ShouldSerializeContractResolver(),
@@ -83,6 +86,9 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 }
             }
 
+            // Connect to the remote server if needed
+            ConnectRemoteServer();
+
             // Convert the Container to a StrippedContainer
             StrippedContainer strippedContainer = StrippedContainer.ConvertToStrippedContainer(container);
 
@@ -93,10 +99,10 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             string indexPath = string.Format(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerListPath, FileTypeExtensions.GetNamePrefixFromType(fileType));
 
             // Check if the file exists
-            if (File.Exists(indexPath))
+            if (FileExists(indexPath))
             {
                 // Deserialize the List
-                containerList = FromJson<List<StrippedContainer>>(File.ReadAllText(indexPath));
+                containerList = FromJson<List<StrippedContainer>>(ReadFile(indexPath));
             }
             else
             {
@@ -120,13 +126,13 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             }
             
             // Serialize and write the container list
-            File.WriteAllText(indexPath, ToJson(containerList));
+            WriteFile(indexPath, ToJson(containerList));
 
             // Declare a variable to hold the ContainerIndex
             ContainerIndex containerIndex;
             
             // Check if the ContainerIndex exists
-            if (!File.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
+            if (FileExists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
             {
                 // Create a dummy StrippedContainer
                 StrippedContainer dummyStrippedContainer = new StrippedContainer();
@@ -143,7 +149,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             else
             {
                 // Read the file
-                containerIndex = FromJson<ContainerIndex>(File.ReadAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
+                containerIndex = FromJson<ContainerIndex>(ReadFile(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath));
             }
 
             // Get the correct property
@@ -153,7 +159,10 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             propertyInfo.SetValue(containerIndex, strippedContainer);
 
             // Write out the ContainerIndex
-            File.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
+            WriteFile(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, ToJson(containerIndex));
+        
+            // Disconnect from the remote server
+            DisconnectRemoteServer();
         }
 
         [SsbuBotDifferenceHandler(FileType.Event, DifferenceType.Changed, 1)]
@@ -173,6 +182,72 @@ namespace SmashBcatDetector.Difference.Handlers.Web
         private static T FromJson<T>(string text)
         {
             return JsonConvert.DeserializeObject<T>(text, DeserializerSettings);
+        }
+
+        private static void ConnectRemoteServer()
+        {
+            // Get the WebConfig
+            WebConfig webConfig = ((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig;
+
+            // Check if the configuration specifies a remote server
+            if (webConfig.RemoteServer == null)
+            {
+                // Create the SftpClient
+                SftpClient = new SftpClient(webConfig.RemoteServer.Address, webConfig.RemoteServer.Username, new PrivateKeyFile(webConfig.RemoteServer.PrivateKey));
+            }
+        }
+
+        private static void DisconnectRemoteServer()
+        {
+            if (SftpClient != null)
+            {
+                SftpClient.Dispose();
+            }
+        }
+
+        private static bool FileExists(string path)
+        {
+            // Check if a remote connection isn't open
+            if (SftpClient == null)
+            {
+                // Read from the local path
+                return File.Exists(path);
+            }
+            else
+            {
+                // Read from the server
+                return SftpClient.Exists(path);
+            }
+        }
+
+        private static string ReadFile(string path)
+        {
+            // Check if a remote connection isn't open
+            if (SftpClient == null)
+            {
+                // Read from the local path
+                return File.ReadAllText(path);
+            }
+            else
+            {
+                // Read from the server
+                return SftpClient.ReadAllText(path);
+            }
+        }
+
+        private static void WriteFile(string path, string text)
+        {
+            // Check if a remote connection isn't open
+            if (SftpClient == null)
+            {
+                // Write the file to the local path
+                File.WriteAllText(path, text);
+            }
+            else
+            {
+                // Write to the server
+                SftpClient.WriteAllText(path, text);
+            }
         }
 
     }
