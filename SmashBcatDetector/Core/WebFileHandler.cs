@@ -112,6 +112,9 @@ namespace SmashBcatDetector.Core
             }
             else
             {
+                // Delete the old file
+                SftpClient.DeleteFile(path);
+
                 // Write to the server
                 SftpClient.WriteAllText(path, json);
             }
