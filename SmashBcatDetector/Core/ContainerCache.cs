@@ -112,19 +112,19 @@ namespace SmashBcatDetector.Core
                 // Add the Container to the correct List
                 if (container is Event)
                 {
-                    Events.Add((Event)container);
+                    Events.Insert(0, (Event)container);
                 }
                 else if (container is LineNews)
                 {
-                    LineNews.Add((LineNews)container);
+                    LineNews.Insert(0, (LineNews)container);
                 }
                 else if (container is PopUpNews)
                 {
-                    PopUpNews.Add((PopUpNews)container);
+                    PopUpNews.Insert(0, (PopUpNews)container);
                 }
                 else if (container is Present)
                 {
-                    Presents.Add((Present)container);
+                    Presents.Insert(0, (Present)container);
                 }
                 else
                 {
