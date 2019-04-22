@@ -22,6 +22,7 @@ using Tweetinvi.Core.Extensions;
 using SmashBcatDetector.Core.Config;
 using Renci.SshNet;
 using System.Linq;
+using BcatBotFramework.Scheduler.Job;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -218,7 +219,7 @@ namespace SmashBcatDetector.Social.Discord.Command
 
             await Context.Channel.SendMessageAsync("**[Admin]** OK, scheduling immediate shutdown");
 
-            await QuartzScheduler.ScheduleJob<SsbuBotShutdownJob>("Immediate");
+            await QuartzScheduler.ScheduleJob<ShutdownJob>("Immediate");
         }
         
     }
