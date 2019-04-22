@@ -1,9 +1,9 @@
-using BcatBotFramework.Scheduler.Job;
+using BcatBotFramework.Core;
 using SmashBcatDetector.Core;
 
 namespace SmashBcatDetector.Scheduler.Job
 {
-    public class SsbuBotShutdownJob : ShutdownJob
+    public class SsbuBotShutdown : Shutdown
     {
         protected override void ShutdownAppSpecificItems()
         {
