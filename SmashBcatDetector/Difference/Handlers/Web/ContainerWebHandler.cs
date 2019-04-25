@@ -109,7 +109,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 ContainerIndex containerIndex;
                 
                 // Check if the ContainerIndex exists
-                if (WebFileHandler.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
+                if (!WebFileHandler.Exists(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath))
                 {
                     // Create a dummy StrippedContainer
                     StrippedContainer dummyStrippedContainer = new StrippedContainer();
