@@ -6,7 +6,7 @@ namespace SmashBcatDetector.Core.Config
     public class SsbuBotConfiguration : Configuration
     {
         [JsonProperty("Web")]
-        public WebConfig WebConfig
+        public SsbuBotWebConfig WebConfig
         {
             get;
             set;
@@ -14,7 +14,7 @@ namespace SmashBcatDetector.Core.Config
 
         protected override void SetAppSpecificDefaults()
         {
-            WebConfig = new WebConfig();
+            WebConfig = new SsbuBotWebConfig();
             WebConfig.SetDefaults();
         }
 

@@ -1,9 +1,8 @@
 using BcatBotFramework.Core.Config;
-using SmashBcatDetector.Core.Config.Web;
 
 namespace SmashBcatDetector.Core.Config
 {
-    public class WebConfig : ISubConfiguration
+    public class SsbuBotWebConfig : WebConfig
     {
         public string ContainerIndexPath
         {
@@ -17,17 +16,11 @@ namespace SmashBcatDetector.Core.Config
             set;
         }
 
-        public RemoteServer RemoteServer
+        public override void SetDefaults()
         {
-            get;
-            set;
-        }
-
-        public void SetDefaults()
-        {
+            RemoteServer = null;
             ContainerIndexPath = "/home/oatmealdome/www/index.json";
             ContainerListPath = "/home/oatmealdome/www/list_{0}.json";
-            RemoteServer = null;
         }
 
     }
