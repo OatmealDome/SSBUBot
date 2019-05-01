@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using BcatBotFramework.Json;
 using Nintendo.Bcat;
 using Nintendo.SmashUltimate.Bcat.EventData;
 using Syroot.BinaryData;
@@ -11,6 +12,7 @@ namespace Nintendo.SmashUltimate.Bcat
 {
     public class Event : Container
     {
+        [NoSerialize]
         public string TitleKey
         {
             get;
@@ -35,6 +37,7 @@ namespace Nintendo.SmashUltimate.Bcat
             set;
         } = new Dictionary<Language, string>();
 
+        [NoSerialize]
         public byte[] Image
         {
             get;

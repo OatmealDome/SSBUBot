@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using BcatBotFramework.Json;
 using Nintendo.Bcat;
 using Nintendo.Text;
 using Syroot.BinaryData;
@@ -10,12 +11,14 @@ namespace Nintendo.SmashUltimate.Bcat
 {
     public class Present : Container
     {
+        [NoSerialize]
         public string TitleKey
         {
             get;
             set;
         }
-
+        
+        [NoSerialize]
         public string ContentKey
         {
             get;
@@ -34,6 +37,7 @@ namespace Nintendo.SmashUltimate.Bcat
             set;
         } = new Dictionary<Language, string>();
 
+        [NoSerialize]
         public byte[] Image
         {
             get;
