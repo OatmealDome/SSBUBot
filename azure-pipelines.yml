@@ -19,10 +19,10 @@ steps:
   displayName: 'download BcatBotFramework key'
 - script: cd ./BcatBotFramework && git-crypt unlock ../bcatbotframework.key && cd ..
   displayName: 'unlock BcatBotFramework'
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet publish --configuration $(buildConfiguration)
+  displayName: 'dotnet publish'
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'SSBUBot'
-    targetPath: ' $(Build.ArtifactStagingDirectory)'
-  displayName: 'Publish SSBUBot binary'
+    targetPath: './bin/$(buildConfiguration)/netcoreapp2.1/publish'
+  displayName: 'publish pipeline artifact'
