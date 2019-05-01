@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
-using SmashBcatDetector.Json;
 using BcatBotFramework.Core.Config;
 using SmashBcatDetector.S3;
 using S3;
@@ -14,6 +13,7 @@ using BcatBotFramework.Difference;
 using ImageMagick;
 using Renci.SshNet;
 using SmashBcatDetector.Core;
+using BcatBotFramework.Core;
 
 namespace SmashBcatDetector.Difference.Handlers.Web
 {
@@ -62,9 +62,8 @@ namespace SmashBcatDetector.Difference.Handlers.Web
 
             lock (WebFileHandler.Lock)
             {
-
                 // Connect to the remote server if needed
-                WebFileHandler.Connect();
+                WebFileHandler.Connect(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig);
 
                 // Convert the Container to a StrippedContainer
                 StrippedContainer strippedContainer = StrippedContainer.ConvertToStrippedContainer(container);
