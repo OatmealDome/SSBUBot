@@ -23,6 +23,7 @@ using SmashBcatDetector.Core.Config;
 using Renci.SshNet;
 using System.Linq;
 using BcatBotFramework.Scheduler.Job;
+using BcatBotFramework.Core;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
@@ -166,7 +167,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             lock (WebFileHandler.Lock)
             {
                 // Connect
-                WebFileHandler.Connect();
+                WebFileHandler.Connect(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig);
 
                 // Upload the file
                 WebFileHandler.WriteAllText(indexPath, containerList);
@@ -195,7 +196,7 @@ namespace SmashBcatDetector.Social.Discord.Command
             lock (WebFileHandler.Lock)
             {
                 // Connect
-                WebFileHandler.Connect();
+                WebFileHandler.Connect(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig);
 
                 // Write the file
                 WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, containerIndex);
