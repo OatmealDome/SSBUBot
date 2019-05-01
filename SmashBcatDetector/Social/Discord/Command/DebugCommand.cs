@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Discord.Commands;
 using Newtonsoft.Json;
 using SmashBcatDetector.Core;
-using SmashBcatDetector.Json;
 using BcatBotFramework.Core.Config;
 using SmashBcatDetector.Scheduler.Job;
 using BcatBotFramework.Social.Discord.Interactive;
@@ -15,6 +14,7 @@ using Nintendo.SmashUltimate.Bcat;
 using BcatBotFramework.Social.Twitter;
 using SmashBcatDetector.Difference.Handlers.Twitter;
 using System.Linq;
+using BcatBotFramework.Json;
 
 namespace SmashBcatDetector.Social.Discord.Command
 {
