@@ -93,7 +93,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 if (index == -1)
                 {
                     // Add the StrippedContainer to the List
-                    containerList.Add(strippedContainer);
+                    containerList.Insert(0, strippedContainer);
                 }
                 else
                 {
