@@ -42,8 +42,7 @@ namespace SmashBcatDetector.Social.Discord.Command
 
             //TwitterManager.GetAccount("SSBUBot").Tweet("[Test]", "test tweet from debug command", "URL: https://google.com");
             
-            PopUpNewsTwitterHandler.HandleAdded(ContainerCache.GetPopUpNews().Last());
-            PresentTwitterHandler.HandleAdded(ContainerCache.GetPresents().Last());
+            LineNewsTwitterHandler.HandleAdded(ContainerCache.GetLineNews().Last());
         }
 
         private static string ToJson(Nintendo.SmashUltimate.Bcat.Container container)
