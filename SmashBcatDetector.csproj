@@ -17,7 +17,7 @@
     <PackageReference Include="Quartz" Version="3.0.7" />
     <PackageReference Include="ssh.net.fork" Version="2018.8.25.2" />
     <PackageReference Include="Syroot.IO.BinaryData" Version="4.0.4" />
-    <PackageReference Include="TweetinviAPI" Version="4.0.0" />
+    <PackageReference Include="TweetinviAPI" Version="4.0.1" />
   </ItemGroup>
 
 </Project>
