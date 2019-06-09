@@ -35,7 +35,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
             byte[] json = Encoding.UTF8.GetBytes(WebFileHandler.ToJson(container));
 
             // Write the data to S3
-            S3Api.TransferFile(json, s3Path, "data.json");
+            S3Api.TransferFile(json, s3Path, "data.json", "application/json");
 
             // Check if this has an image
             if (fileType == FileType.Event || fileType == FileType.PopUpNews || fileType == FileType.Present)
