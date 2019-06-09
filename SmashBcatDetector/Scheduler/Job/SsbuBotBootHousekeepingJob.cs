@@ -24,7 +24,9 @@ namespace SmashBcatDetector.Scheduler.Job
             // Initialize the ContainerCache
             ContainerCache.Initialize(Program.LOCAL_CONTAINER_CACHE_DIRECTORY);
 
-            await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling archivals");
+            await Task.FromResult(0);
+
+            /*await DiscordBot.LoggingChannel.SendMessageAsync($"**[BootHousekeepingJob]** Scheduling archivals");
 
             // Archive all Container pages in production mode
             if (Configuration.LoadedConfiguration.IsProduction)
@@ -59,7 +61,7 @@ namespace SmashBcatDetector.Scheduler.Job
                 {
                     await ScheduleArchivalIfEligible(smashEvent);
                 }
-            }
+            }*/
         }
 
         protected override async Task SchedulePostBootJobs()
