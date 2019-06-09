@@ -102,7 +102,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 }
                 
                 // Serialize and write the container list
-                WebFileHandler.WriteAllText(indexPath, containerList);
+                WebFileHandler.WriteAllText(indexPath, WebFileHandler.ToJson(containerList));
 
                 // Declare a variable to hold the ContainerIndex
                 ContainerIndex containerIndex;
@@ -135,7 +135,7 @@ namespace SmashBcatDetector.Difference.Handlers.Web
                 propertyInfo.SetValue(containerIndex, strippedContainer);
 
                 // Write out the ContainerIndex
-                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, containerIndex);
+                WebFileHandler.WriteAllText(((SsbuBotConfiguration)Configuration.LoadedConfiguration).WebConfig.ContainerIndexPath, WebFileHandler.ToJson(containerIndex));
             
                 // Disconnect from the remote server
                 WebFileHandler.Disconnect();
