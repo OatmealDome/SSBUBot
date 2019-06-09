@@ -80,7 +80,7 @@ namespace SmashBcatDetector.Core
 
             // Sort the containers
             Events.Sort((x, y) => y.StartDateTime.CompareTo(x.StartDateTime));
-            Presents.Sort((x, y) => y.StartDateTime.CompareTo(x.StartDateTime));
+            LineNews.Sort((x, y) => y.StartDateTime.CompareTo(x.StartDateTime));
             PopUpNews.Sort((x, y) => y.StartDateTime.CompareTo(x.StartDateTime));
             Presents.Sort((x, y) => y.StartDateTime.CompareTo(x.StartDateTime));
 
