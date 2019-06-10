@@ -25,4 +25,9 @@ steps:
   inputs:
     artifactName: 'SSBUBot'
     targetPath: './bin/$(buildConfiguration)/netcoreapp2.1/publish'
-  displayName: 'publish pipeline artifact'
+  displayName: 'publish build'
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'SSBUBot-localizations'
+    targetPath: './Localizations'
+  displayName: 'publish localizations'
