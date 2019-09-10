@@ -68,16 +68,13 @@ namespace SmashBcatDetector.Social.Discord.Command
                     
                     break;
                 case FileType.PopUpNews:
-                    foreach (PopUpNews news in ContainerCache.GetPopUpNews())
+                    // TODO: hack something better can be made, pages maybe?
+                    foreach (PopUpNews news in ContainerCache.GetPopUpNews().Where(x => !x.Id.Contains("_")).Take(10))
                     {
-                        // TODO: hack something better can be made, pages maybe?
-                        if (news.Id.Contains("_"))
-                        {
-                            continue;
-                        }
-                        
                         ids.Add($"``{news.Id}`` - {news.TitleText[language]}");
                     }
+                    
+                    ids.Add("(only the 10 most recent Pop-Up News is displayed)");
 
                     break;
                 case FileType.Present:
