@@ -48,8 +48,5 @@
     "twitter.popupnews.header": "[Pop-up News] #ssbunews",
     "twitter.popupnews.url": "Click here for more information: {0}",
     "twitter.present.header": "[Present] #ssbupresent",
-    "twitter.present.url": "Click here for more information: {0}",
-    "twitter.patreon_reply.header": "[Patreon]",
-    "twitter.patreon_reply.description": "Please consider supporting SSBUBot on Patreon. As SSBUBot grows over time, we have to rent bigger servers, which means that we pay more per month to keep the bot running. Any bit helps! Thank you in advance.",
-    "twitter.patreon_reply.url": "https://patreon.com/oatmealdome"
+    "twitter.present.url": "Click here for more information: {0}"
 }
